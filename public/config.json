@@ -1,0 +1,20 @@
+{
+  "components": {
+    "dataSourceChildren": {
+      "bindings": [
+        {
+          "key": "dataSourceName",
+          "target": "demo1"
+        }
+      ]
+    },
+    "dataModelChildren": {
+      "bindings": [
+        {
+          "key": "dataModelName",
+          "target": "demo1"
+        }
+      ]
+    }
+  }
+}

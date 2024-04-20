@@ -1,0 +1,38 @@
+@import "theme";
+
+#yt-theme-dark {
+  #app {
+    .el-button--default.el-button--primary {
+      background-color: $--color-button-primary !important;
+      border-color: $--color-button-primary !important;
+      color: $--color-primary-text !important;
+    }
+
+    .el-button--default.el-button--primary:hover {
+      background-color: $--color-button-primary--hover !important;
+      border-color: $--color-button-primary--hover !important;
+    }
+
+    .el-button--success, .el-button--danger, .el-button--warning, .el-button--default {
+      background-color: $--color-button-default !important;
+      border-color: $--color-button-default-border !important;
+      color: $--color-primary-text !important;
+    }
+
+    .el-button--success.is-disabled, .el-button--danger.is-disabled, .el-button--warning.is-disabled, .el-button--default.is-disabled {
+      background-color: $--color-button-disabled-bg !important;
+      color: $--color-light-text !important;
+      border-color: $--color-button-disabled-border !important;
+    }
+
+    .el-button--success:hover, .el-button--danger:hover, .el-button--warning:hover, .el-button--default:hover {
+      background-color: $--color-button-disabled-border !important;
+    }
+
+    .el-button--success.is-disabled:hover, .el-button--danger.is-disabled:hover, .el-button--warning.is-disabled:hover, .el-button--default.is-disabled:hover {
+      background-color: $--color-button-disabled-bg !important;
+      color: $--color-light-text !important;
+      border-color: $--color-button-disabled-border !important;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+/*
+* 表格样式
+*/
+#yt-theme-light {
+  #app {
+    .el-table {
+      .cell {
+        .el-button {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+}

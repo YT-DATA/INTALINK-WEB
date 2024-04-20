@@ -1,0 +1,156 @@
+/*
+* 菜单样式
+* 此文件包括
+*    1. 菜单相关样式：包括展开收起样式
+*    2. 顶部tab栏相关样式
+*/
+
+@import "theme";
+
+#yt-theme-dark {
+  #app {
+
+    .el-menu:not(.el-menu--collapse) {
+      background-color: $--color-bg-main !important;
+
+      .el-sub-menu__title {
+        background-color: $--color-bg-main !important;
+      }
+
+      .el-menu-item {
+        background-color: $--color-bg-main !important;
+        min-width: 190px !important;
+        height: 36px !important;
+        margin: 2px 5px !important;
+        box-sizing: border-box !important;
+        border-radius: 3px !important;
+      }
+
+      .el-sub-menu__title {
+        min-width: 190px !important;
+        height: 36px !important;
+        margin: 2px 5px !important;
+        box-sizing: border-box !important;
+        border-radius: 3px !important;
+      }
+
+      .el-menu-item.is-active {
+        background-color: $--color-button-primary !important;
+        color: #fff !important;
+      }
+    }
+
+    .el-menu.el-menu--collapse {
+      background-color: $--color-bg-main !important;
+    }
+
+    .main-container {
+      background-color: $--color-bg-border !important;
+
+      .navbar {
+        background-color: $--color-bg-main !important;
+        border-bottom: 1px solid #2a2a2c !important;
+
+        .el-breadcrumb {
+          .el-breadcrumb__item {
+            .el-breadcrumb__inner {
+              a {
+                color: #ecf2fe !important;
+              }
+            }
+          }
+        }
+      }
+
+      .tags-view-container {
+        background-color: $--color-bg-main !important;
+        border-bottom: 1px solid #2a2a2c !important;
+
+        .tags-view-wrapper {
+          .tags-view-item {
+            color: #b2b5bc !important;
+
+            .el-icon-close:hover {
+              background-color: #666 !important;
+            }
+          }
+
+          .tags-view-item.active {
+            background-color: #424242 !important;
+            border-color: #424242 !important;
+            color: $--color-primary-text !important;
+          }
+
+          .tags-view-item.active::before {
+            background: $--color-primary-text !important;
+          }
+        }
+
+        .contextmenu {
+          background-color: $--color-bg-main !important;
+          border: 1px solid #414141 !important;
+          color: #b2b5bc !important;
+
+          li:hover {
+            background-color: #2f2f2f !important;
+            color: #fff !important;
+          }
+        }
+      }
+    }
+
+    // tab切换菜单样式
+    .hasTagsView {
+      .el-scrollbar {
+        .tags-view-item.active {
+          background-color: #ecf2fe !important;
+          border-color: #ecf2fe !important;
+          color: $--color-button-primary !important;
+        }
+
+        .el-icon-close:hover {
+          background-color: #ecf2fe !important;
+        }
+
+      }
+
+      .topmenu-container {
+        .el-menu-item {
+          height: 50px !important;
+          line-height: 50px !important;
+        }
+
+        .el-menu-item.is-active {
+          color: $--color-button-primary !important;
+        }
+
+        .el-menu-item:hover {
+          color: $--color-button-primary--hover !important;
+        }
+      }
+    }
+
+    .hamburger-container {
+      .hamburger {
+        fill: #cecece !important;
+      }
+    }
+
+    .el-scrollbar {
+      .scrollbar-wrapper {
+        .el-scrollbar__view {
+          .el-menu.el-menu--collapse {
+            .el-menu-item {
+              min-width: 43px !important;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar-container .theme-dark .is-active > .el-sub-menu__title {
+      color: $--color-button-primary !important;
+    }
+  }
+}
+

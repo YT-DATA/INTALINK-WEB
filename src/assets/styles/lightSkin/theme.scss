@@ -1,0 +1,10 @@
+/*
+* 当前文件存储深色模式基础颜色
+* 在其他文件中引用即可使用
+*/
+
+$--color-bg-main: #1e1e1e; // 整体主题颜色
+$--color-bg-border: #000; // 内部与菜单链接边框颜色
+$--color-button-primary: #2468f2; // 按钮等主题色
+$--color-button-primary--hover: #054cf1; // 按钮等主题色移入显示颜色
+$--color-menu-main: #e6f0ff; // 菜单主题色

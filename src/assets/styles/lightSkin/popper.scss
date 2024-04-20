@@ -1,0 +1,108 @@
+/*
+* el-popper 弹出层样式
+*/
+@import "theme";
+
+#yt-theme-light {
+  .el-popper {
+    // 收起菜单时样式
+    .el-menu--vertical {
+      .el-menu {
+        .nest-menu {
+          height: 40px !important;
+          line-height: 40px !important;
+
+          .router-link-active {
+            .el-menu-item {
+              min-width: 190px !important;
+              height: 36px !important;
+              margin: 2px 5px !important;
+              box-sizing: border-box !important;
+              border-radius: 3px !important;
+              background-color: $--color-menu-main;
+            }
+
+            .el-menu-item:hover {
+              background-color: $--color-menu-main !important;
+            }
+          }
+
+          a {
+            height: 40px !important;
+            line-height: 40px !important;
+
+            .el-menu-item {
+              height: 40px !important;
+              line-height: 40px !important;
+            }
+
+            .el-menu-item:hover {
+              background-color: transparent !important;
+              color: $--color-button-primary !important;
+            }
+          }
+
+          .el-sub-menu {
+            height: 40px !important;
+            line-height: 40px !important;
+
+            .el-sub-menu__title {
+              height: 40px !important;
+              line-height: 40px !important;
+
+              .menu-title {
+                height: 40px !important;
+                line-height: 40px !important;
+              }
+            }
+
+            .el-sub-menu__title:hover {
+              background-color: transparent !important;
+              color: $--color-button-primary !important;
+            }
+          }
+
+          .el-sub-menu.is-active {
+            .el-sub-menu__title {
+              color: $--color-button-primary !important;
+
+            }
+          }
+        }
+      }
+    }
+
+    // 下拉选内部样式
+    .el-scrollbar {
+      .el-select-dropdown__item {
+        height: 30px !important;
+        line-height: 30px !important;
+
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .el-select-dropdown__item:hover {
+        background-color: $--color-menu-main !important;;
+      }
+
+      .el-dropdown-menu {
+        a, .el-dropdown-menu__item {
+          font-size: 12px !important;
+          height: 28px !important;
+          line-height: 28px !important;
+        }
+
+        a, .el-dropdown-menu__item:hover {
+          color: $--color-button-primary;
+        }
+      }
+    }
+
+    // 时间选择器内部样式
+    .el-date-table td.in-range .el-date-table-cell {
+      background-color: $--color-menu-main;
+    }
+  }
+}

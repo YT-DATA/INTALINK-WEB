@@ -1,0 +1,42 @@
+/*
+* 当前文件存储深色模式基础颜色
+* 在其他文件中引用即可使用
+*/
+
+$--color-primary-text: rgba(255, 255, 255, .87); //整体主题文字颜色
+$--color-medium-text: rgba(255, 255, 255, .76); //整体主题文字颜色中等色
+$--color-light-text: rgba(255, 255, 255, .6); //整体主题文字颜色浅色
+$--color-input-disabled: rgba(255, 255, 255, .3); //输入框禁用时文本显示颜色
+$--color-bg-main: #1b1b1d; // 整体主题颜色
+$--color-bg-border: #1b1b1d; // 内部与菜单链接边框颜色
+$--color-sidebar-border: #303030; // 侧边栏边框颜色
+$--color-primary-border: #89898d; // 默认边框色,如输入框等
+$--color-dialog-border: #444444; // 弹出层等边框色
+$--color-form-bg: #2a2a2c; // 表单背景色
+$--color-form-focus: #c7c7c7; // 表单获取焦点颜色
+/**************************** el-button *************************************/
+$--color-button-primary: #2468f2; // 按钮等主题色
+$--color-button-primary--hover: #054cf1; // 按钮等主题色移入显示颜色
+$--color-button-default: #3e3e3e; // 按钮默认颜色
+$--color-button-default-border: #6e6e6e; // 按钮默认边框色
+$--color-button-disabled-bg: #212121; // 按钮默认禁用背景色
+$--color-button-disabled-border: #505050; // 按钮默认禁用边框色
+/**************************** el-table **************************************/
+$--color-table-border: #353535; // 表格边框颜色
+$--color-table-header-bg: #2f2f2f; // 表格头部背景色
+$--color-table-row--hover: #2c2b2b; // 表格移入列颜色
+$--color-table-mask: #2f2f2f; // 表格遮罩层颜色
+/**************************** el-tag ****************************************/
+$--color-tag-primary: rgba(210, 210, 210, 0.3); // 默认标签主题色
+$--color-tag-primary-border: rgba(211, 211, 211, 0.6); // 默认标签边框
+$--color-tag-success: rgba(136, 204, 136, 0.3); // 成功标签主题色
+$--color-tag-success-border: rgba(136, 204, 136, 0.6); // 成功标签边框
+$--color-tag-danger: rgba(255, 136, 136, 0.3); // 危险标签主题色
+$--color-tag-danger-border: rgba(255, 136, 136, 0.6); // 危险标签边框
+$--color-tag-warning: rgba(255, 204, 102, 0.3); // 警告标签主题色
+$--color-tag-warning-border: rgba(255, 204, 102, 0.6); // 警告标签边框
+$--color-tag-info: rgba(136, 136, 255, 0.3); // 信息标签主题色
+$--color-tag-info-border: rgba(136, 136, 255, 0.6); // 信息标签边框
+$--color-tag-text: rgba(255, 255, 255, .7); // 标签文字颜色
+/**************************** el-select *************************************/
+$--color-select--hover: rgba(255, 255, 255, .1);

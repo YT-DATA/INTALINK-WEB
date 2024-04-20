@@ -1,0 +1,138 @@
+@import "theme";
+
+#yt-theme-dark {
+  background: $--color-bg-main !important;
+  border-color: #8a8a8a !important;
+
+  .el-scrollbar {
+    background: $--color-bg-main !important;
+
+    .el-dropdown-menu {
+      background: $--color-bg-main !important;
+      border-color: $--color-bg-border !important;
+    }
+
+    .el-dropdown-menu__item, .el-select-dropdown__item {
+      color: $--color-light-text !important;
+    }
+
+
+    .el-select-dropdown__item:hover {
+      color: $--color-primary-text !important;
+      background-color: $--color-select--hover !important;
+    }
+
+    .el-select-dropdown__item.is-hovering {
+      color: $--color-primary-text !important;
+      background-color: $--color-select--hover !important;
+    }
+  }
+
+  .el-dropdown-menu__item:not(.is-disabled):focus {
+    background-color: rgba(255, 255, 255, .2) !important;
+    color: $--color-primary-text !important;
+  }
+
+  .el-dropdown-menu__item--divided {
+    border-color: #8a8a8a !important;
+  }
+
+  .el-menu {
+    background: $--color-bg-main !important;
+
+    .nest-menu {
+      .router-link-active {
+        .el-menu-item {
+          min-width: 190px !important;
+          height: 36px !important;
+          margin: 2px 5px !important;
+          box-sizing: border-box !important;
+          border-radius: 3px !important;
+        }
+
+        .el-menu-item.is-active {
+          background-color: $--color-button-primary !important;
+          color: #fff !important;
+        }
+      }
+
+      .el-sub-menu.is-active {
+        .el-sub-menu__title {
+          color: $--color-button-primary !important;
+        }
+      }
+
+      .el-menu-item:hover {
+        color: $--color-button-primary !important;
+      }
+    }
+  }
+
+
+  // 个人头像图标下拉框
+  .el-popper {
+    background: $--color-bg-main !important;
+    border-color: #8a8a8a !important;
+
+    .el-scrollbar {
+      background: $--color-bg-main !important;
+
+      .el-dropdown-menu {
+        background: $--color-bg-main !important;
+        border-color: $--color-bg-border !important;
+
+        .el-dropdown-menu__item {
+          color: $--color-light-text !important;
+          font-size: 12px;
+          padding: 3px 12px;
+        }
+      }
+    }
+
+    .el-dropdown-menu__item:not(.is-disabled):focus {
+      background-color: rgba(255, 255, 255, .2) !important;
+      color: $--color-primary-text !important;
+    }
+
+    .el-dropdown-menu__item--divided {
+      border-color: #8a8a8a !important;
+    }
+
+    .icon-body {
+      .icon-item {
+        color: $--color-light-text !important;
+      }
+
+      .icon-item:hover {
+        background-color: $--color-select--hover !important;
+        color: $--color-primary-text !important;
+      }
+      .icon-item.active {
+        background-color: $--color-select--hover !important;
+        color: $--color-primary-text !important;
+      }
+
+    }
+
+    .el-select-dropdown {
+      .el-scrollbar {
+        .el-select-dropdown__wrap {
+          .el-select-dropdown__list {
+            .el-select-dropdown__item {
+              color: $--color-light-text !important;
+            }
+
+            .el-select-dropdown__item.is-selected {
+              color: $--color-primary-text !important;
+            }
+
+            .el-select-dropdown__item:hover {
+              color: $--color-primary-text !important;
+              background-color: $--color-select--hover !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

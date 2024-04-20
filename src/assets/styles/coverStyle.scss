@@ -1,0 +1,241 @@
+/**
+* time: 2024/3/11
+* yt-css 覆盖公共样式
+* 主要为浅色模式样式相关覆盖
+*/
+
+#yt-theme-dark #app, #yt-theme-light #app {
+  .navbar {
+    .right-menu {
+      .right-menu-item {
+        .svg-icon {
+          font-size: 14px !important;
+        }
+
+        .el-select {
+          .el-select__wrapper {
+            min-height: 28px !important;
+            height: 28px !important;
+            font-size: 12px !important;
+          }
+        }
+      }
+
+      .avatar-container {
+        .avatar-wrapper {
+          margin-top: 12px !important;
+
+          i {
+            top: 8px !important;
+          }
+
+          .el-select__selection {
+            font-size: 14px !important;
+          }
+
+          .user-avatar {
+            width: 28px !important;
+            height: 28px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .el-menu {
+    .el-menu-item {
+      height: 36px !important;
+      line-height: 36px !important;
+    }
+
+    .el-sub-menu {
+      .el-sub-menu__title {
+        height: 36px !important;
+        line-height: 36px !important;
+      }
+
+      .el-menu-item {
+        height: 36px !important;
+        line-height: 36px !important;
+      }
+    }
+  }
+
+  .el-menu:not(.el-menu--collapse) {
+    .el-sub-menu {
+      .el-sub-menu__title {
+        min-width: 190px !important;
+      }
+
+      .el-menu-item {
+        min-width: 190px !important;
+      }
+    }
+  }
+
+  .el-table {
+    .cell {
+      font-size: 12px !important;
+    }
+
+    .el-input {
+
+      .el-input__inner {
+        height: 28px !important;
+      }
+    }
+
+    .el-select {
+      .el-select__wrapper {
+        font-size: 12px !important;
+        min-height: 28px !important;
+      }
+    }
+  }
+
+  .el-pagination {
+    font-size: 12px !important;
+
+    .el-select {
+      width: 100px !important;
+
+      .el-select__wrapper {
+        min-height: 28px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    .el-pager {
+      li {
+        font-size: 12px !important;
+      }
+    }
+
+    .el-pagination__jump {
+      .el-input {
+        width: 48px !important;
+        height: 28px !important;
+      }
+    }
+  }
+
+  .el-button {
+    font-size: 12px;
+    padding: 4px 12px;
+    height: 28px;
+  }
+
+  .el-input {
+    .el-input__inner {
+      font-size: 12px;
+    }
+  }
+
+
+  .el-date-editor {
+    .el-range-input {
+      font-size: 12px;
+    }
+  }
+
+  .el-form {
+    .el-form-item__label {
+      font-size: 13px;
+    }
+
+    .el-radio {
+      .el-radio__label {
+        font-size: 12px;
+      }
+    }
+
+    .el-select {
+      min-width: 220px;
+
+      .el-select__wrapper {
+        font-size: 12px !important;
+      }
+    }
+
+    .el-textarea {
+      font-size: 12px;
+    }
+  }
+
+  .el-dialog {
+    border-radius: 10px;
+    min-width: 650px;
+
+    .el-dialog__header {
+      .el-dialog__title {
+        color: #151b26;
+      }
+
+      .el-dialog__close {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .el-message-box {
+    border-radius: 10px;
+
+    .el-message-box__title {
+      span {
+        font-size: 16px;
+      }
+    }
+
+    .el-message-box__message {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .el-tree {
+    .el-tree-node.is-current {
+      //color: #2468f2;
+    }
+  }
+
+  .el-overlay {
+    .el-drawer {
+      .drawer-title {
+        font-size: 16px !important;
+      }
+    }
+  }
+
+  .el-switch {
+    .el-switch__core {
+      min-width: 36px !important;
+      height: 18px !important;
+
+      .el-switch__action {
+        width: 14px !important;
+        height: 14px !important;
+
+      }
+    }
+  }
+
+  .el-switch.is-checked {
+    .el-switch__core {
+      .el-switch__action {
+        left: calc(100% - 16px) !important;
+      }
+    }
+  }
+
+  // 系统超链接
+  .link-type, .link-type:focus {
+    color: #2468f2 !important;
+  }
+
+  .link-type:hover {
+    color: #054cf1 !important;
+  }
+}
+
+

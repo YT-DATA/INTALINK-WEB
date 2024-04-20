@@ -1,0 +1,144 @@
+@import "theme";
+
+#yt-theme-dark {
+  #app {
+    .el-table {
+      border: 1px solid $--color-table-border !important;
+      background-color: transparent !important;
+
+      .el-table__header {
+        .el-table__cell {
+          background-color: $--color-table-header-bg !important;
+          color: $--color-primary-text !important;
+        }
+      }
+
+      .el-table__row:hover {
+        .el-table__cell {
+          background-color: $--color-table-row--hover !important;
+        }
+      }
+
+      .el-table__cell {
+        background-color: $--color-bg-main !important;
+        border-color: $--color-table-border !important;
+        color: $--color-light-text !important;
+
+        .cell {
+          //padding: 2px 12px !important;
+
+          .el-button {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: $--color-light-text !important;
+            padding: 0 !important;
+          }
+
+          .el-button :hover {
+            color: $--color-primary-text !important;
+          }
+        }
+      }
+
+      .el-table__inner-wrapper::before {
+        background-color: transparent !important;
+      }
+
+      .el-input {
+        border: 1px solid $--color-primary-border !important;
+        border-radius: 5px !important;
+
+        .el-input__wrapper {
+          box-shadow: none !important;
+        }
+      }
+
+      .el-select {
+        border: 1px solid $--color-primary-border !important;
+        border-radius: 5px !important;
+
+        .select__wrapper {
+          box-shadow: none !important;
+        }
+      }
+
+      .el-tag.el-tag--default {
+        background-color: $--color-tag-primary !important;
+        border-color: $--color-tag-primary-border !important;
+        color: $--color-tag-text !important;
+      }
+
+      .el-tag.el-tag--success {
+        background-color: $--color-tag-success !important;
+        border-color: $--color-tag-success-border !important;
+        color: $--color-tag-text !important;
+      }
+
+      .el-tag.el-tag--danger {
+        background-color: $--color-tag-danger !important;
+        border-color: $--color-tag-danger-border !important;
+        color: $--color-tag-text !important;
+      }
+
+      .el-tag.el-tag--warning {
+        background-color: $--color-tag-warning !important;
+        border-color: $--color-tag-warning-border !important;
+        color: $--color-tag-text !important;
+      }
+
+      .el-tag.el-tag--info {
+        background-color: $--color-tag-info !important;
+        border-color: $--color-tag-info-border !important;
+        color: $--color-tag-text !important;
+      }
+
+      .el-loading-mask {
+        background-color: $--color-table-mask !important;
+      }
+    }
+
+    .pagination-container {
+      background-color: $--color-bg-main !important;
+
+
+      .btn-prev, .el-pager, .btn-next {
+        background-color: $--color-bg-main !important;
+        color: $--color-light-text !important;
+      }
+
+      .el-pager li {
+        background-color: $--color-bg-main !important;
+        color: $--color-light-text !important;
+      }
+
+      .el-pager li:hover {
+        background-color: $--color-bg-main !important;
+        color: $--color-primary-text !important;
+        color: $--color-primary-text !important;
+      }
+
+      .el-pager li.is-active {
+        background-color: rgba(255, 255, 255, .1) !important;
+        color: $--color-primary-text !important;
+      }
+
+      .el-pagination__total, .el-pagination__jump {
+        color: $--color-light-text !important;
+      }
+
+      .el-pagination__sizes {
+        .el-select {
+          .el-select__selected-item {
+            color: $--color-light-text !important;
+          }
+        }
+      }
+
+      .el-input {
+        .el-input__inner {
+          color: $--color-light-text !important;
+        }
+      }
+    }
+  }
+}
