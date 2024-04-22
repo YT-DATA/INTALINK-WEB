@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 
 import Cookies from 'js-cookie'
 
@@ -15,7 +15,7 @@ import directive from './directive' // directive
 
 // 注册指令
 import plugins from './plugins' // plugins
-import { download } from '@/utils/request'
+import {download} from '@/utils/request'
 
 // svg图标
 import 'virtual:svg-icons-register'
@@ -24,8 +24,7 @@ import elementIcons from '@/components/SvgIcon/svgicon'
 
 import './permission' // permission control
 
-import { useDict } from '@/utils/dict'
-import { parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels } from '@/utils/ruoyi'
+import {parseTime, resetForm, addDateRange, handleTree, selectDictLabel, selectDictLabels} from '@/utils/ruoyi'
 
 // 分页组件
 import Pagination from '@/components/Pagination'
@@ -44,17 +43,16 @@ import TreeSelect from '@/components/TreeSelect'
 // 字典标签组件
 import DictTag from '@/components/DictTag'
 
-import { DataNexus } from 'datanexus-vue3';
+import {DataNexus} from 'datanexus-vue3';
 
-// import { vAnimate } from './utils/animate';
-
+import {vAnimate} from './utils/animate';
+import i18n from './lang'
 
 const app = createApp(App)
 
-// app.directive('animate', vAnimate);
+app.directive('animate', vAnimate);
 
 // 全局方法挂载
-app.config.globalProperties.useDict = useDict
 app.config.globalProperties.download = download
 app.config.globalProperties.parseTime = parseTime
 app.config.globalProperties.resetForm = resetForm
@@ -62,6 +60,7 @@ app.config.globalProperties.handleTree = handleTree
 app.config.globalProperties.addDateRange = addDateRange
 app.config.globalProperties.selectDictLabel = selectDictLabel
 app.config.globalProperties.selectDictLabels = selectDictLabels
+app.config.productionTip = false
 
 // 全局组件挂载
 app.component('DictTag', DictTag)
@@ -78,6 +77,8 @@ app.use(router)
 app.use(store)
 app.use(plugins)
 app.use(elementIcons)
+app.use(i18n)
+
 app.component('svg-icon', SvgIcon)
 
 directive(app)

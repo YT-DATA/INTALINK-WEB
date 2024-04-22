@@ -1,9 +1,7 @@
-import request from '@/utils/request'
-
 // 获取路由
 export const getRouters = () => {
-  return request({
-    url: '/dataSourceBasic/count',
-    method: 'get',
+  // 配合逻辑使用接口 无实际意义
+  return new Promise((resolve) => {
+    resolve('执行成功!')
   })
 }

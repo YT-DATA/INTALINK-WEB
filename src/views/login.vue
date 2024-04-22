@@ -5,14 +5,15 @@
         <img src="@/assets/images/login-image.png"/>
       </div>
       <div class="login-form-main">
-        <h3 class="title">intalink</h3>
+        <LangSelect class="login-lang-select"></LangSelect>
+        <h3 class="title">{{ $t('login.title') }}</h3>
         <el-form-item prop="username">
           <el-input
               v-model="loginForm.username"
               type="text"
               size="large"
               auto-complete="off"
-              placeholder="账号"
+              :placeholder="$t('login.username')"
           >
             <template #prepend>
               <svg-icon icon-class="user" class="el-input__icon input-icon"/>
@@ -25,7 +26,7 @@
               type="password"
               size="large"
               auto-complete="off"
-              placeholder="密码"
+              :placeholder="$t('login.password')"
               @keyup.enter="handleLogin"
           >
             <template #prepend>
@@ -33,7 +34,10 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
+        <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">{{
+            $t('login.rememberMe')
+          }}
+        </el-checkbox>
         <el-form-item style="width:100%;">
           <el-button
               :loading="loading"
@@ -42,11 +46,9 @@
               style="width:100%;"
               @click.prevent="handleLogin"
           >
-            <span v-if="!loading">登 录</span>
-            <span v-else>登 录 中...</span>
+            <span v-if="!loading">{{ $t('login.logIn') }}</span>
+            <span v-else>{{ $t('login.logIning') }}</span>
           </el-button>
-          <div style="float: right;" v-if="register">
-          </div>
         </el-form-item>
       </div>
     </el-form>
@@ -61,6 +63,7 @@ import Cookies from "js-cookie";
 import {encrypt, decrypt} from "@/utils/jsencrypt";
 import useUserStore from '@/store/modules/user'
 import useAppStore from '@/store/modules/app'
+import LangSelect from "@/components/LangSelect/index.vue";
 
 const userStore = useUserStore()
 const route = useRoute();
@@ -69,7 +72,7 @@ const {proxy} = getCurrentInstance();
 
 const loginForm = ref({
   username: "admin",
-  password: "admin123",
+  password: "123456",
   rememberMe: false,
   code: "",
   uuid: ""
@@ -117,7 +120,6 @@ function handleLogin() {
           return acc;
         }, {});
         router.push({path: redirect.value || "/", query: otherQueryParams});
-        useAppStore().setLoginState(true)
         sessionStorage.setItem("isLogin", JSON.stringify({isLogin: true}))
       } else {
         loading.value = false;
@@ -246,5 +248,27 @@ getCookie();
 .login-code-img {
   height: 40px;
   padding-left: 12px;
+}
+</style>
+<style lang="scss">
+.login {
+  .login-form {
+
+    .login-form-main {
+      position: relative;
+      top: 0;
+
+      .login-lang-select {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .lang-wrapper {
+          margin: 0 !important;
+        }
+      }
+    }
+
+  }
 }
 </style>

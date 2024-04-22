@@ -3,30 +3,24 @@
     <el-row :gutter="20" class="homeTop">
       <el-col :sm="24" :lg="24">
         <el-card class="update-log">
-          <template v-slot:header>
-            <div class="clearfix">
-              <span>综合数据展示</span>
-            </div>
-          </template>
           <div class="titleBody">
             <div class="homeTitle">
               <span class="titleName">
-                数据源数量
+                {{ $t('homePage.sourcesNumber') }}
               </span>
               <span class="titleQuantity">
-                {{ sourseTotal }}个
+                {{ sourseTotal }} {{ $t('homePage.number')}}
               </span>
               <span class="titleIcon">
                 <svg-icon class-name="shuju-icon" icon-class="shuju"/>
-
               </span>
             </div>
             <div class="homeTitle">
               <span class="titleName">
-                系统数量
+                 {{ $t('homePage.systemsNumber') }}
               </span>
               <span class="titleQuantity">
-                {{ systemTotal }}个
+                {{ systemTotal }} {{ $t('homePage.number')}}
               </span>
               <span class="titleIcon">
                 <svg-icon class-name="shuju1-icon" icon-class="shuju1"/>
@@ -35,10 +29,10 @@
             </div>
             <div class="homeTitle">
               <span class="titleName">
-                数据模型数量
+               {{ $t('homePage.modelsNumber') }}
               </span>
               <span class="titleQuantity">
-                {{ modelTotal }}个
+                {{ modelTotal }} {{ $t('homePage.number')}}
               </span>
               <span class="titleIcon">
                 <svg-icon class-name="shujuyuan-icon" icon-class="shujuyuan"/>
@@ -48,10 +42,10 @@
             </div>
             <div class="homeTitle">
               <span class="titleName">
-                数据表数量
+                {{ $t('homePage.tablesNumber') }}
               </span>
               <span class="titleQuantity">
-                {{ tableTotal }}个
+                {{ tableTotal }} {{ $t('homePage.number')}}
               </span>
               <span class="titleIcon">
                 <svg-icon class-name="shujujicheng-icon" icon-class="shujujicheng"/>
@@ -67,14 +61,14 @@
         <el-card class="update-log">
           <template v-slot:header>
             <div class="clearfix">
-              <span>常用功能展示</span>
+              <span>{{ $t('homePage.functionDisplayTitle') }}</span>
             </div>
           </template>
           <div class="body">
             <div class="navigationItem">
               <div id="firstJson" class="navigationMenu" @click="toPath('/dataConfiguration/dataSource')">
                 <div class="title">
-                  数据源管理
+                  {{ $t('homePage.sourceManagement') }}
                 </div>
               </div>
               <div id="firstArrow" class="navigationArrow"></div>
@@ -82,7 +76,7 @@
             <div class="navigationItem">
               <div id="secondJson" class="navigationMenu" @click="toPath('/dataConfiguration/dataModel')">
                 <div class="title">
-                  数据模型管理
+                  {{ $t('homePage.modelManagement') }}
                 </div>
               </div>
               <div id="secondArrow" class="navigationArrow"></div>
@@ -90,7 +84,7 @@
             <div class="navigationItem">
               <div id="thirdJson" class="navigationMenu" @click="toPath('/dataConfiguration/dataSystem')">
                 <div class="title">
-                  系统管理
+                  {{ $t('homePage.systemManagement') }}
                 </div>
               </div>
               <div class="thirdDiv">
@@ -104,10 +98,10 @@
                 <div id="fourthJson1" class="navigationMenu2" @click="toPath('/dataConfiguration/dataSystem')"></div>
               </div>
               <div class="title1">
-                系统关联数据源
+                {{ $t('homePage.associateSources') }}
               </div>
               <div class="title2">
-                系统关联数据模型
+                {{ $t('homePage.associatedModels') }}
               </div>
             </div>
           </div>
@@ -118,7 +112,7 @@
 </template>
 
 <script setup name="home">
-import {onMounted} from 'vue'
+import {onMounted, watch} from 'vue'
 import stats from '@/assets/animation/stats.json'
 import Arrow from '@/assets/animation/Arrow.json'
 import analys from '@/assets/animation/approved-server.json'
@@ -131,24 +125,24 @@ import {
   sourceBasicCount,
   systemBasicCount
 } from "@/api/configuration/configuration.js";
-import useAppStore from '@/store/modules/app'
-import {ElMessage} from "element-plus";
+
 
 // 使用 inject 获取 DataNexus 提供的方法
 const router = useRouter();
 const dataNexus = inject('dataNexus');
-const sourseTotal = ref('0')
-const systemTotal = ref('0')
-const modelTotal = ref('0')
-const tableTotal = ref('0')
-const fullHeight = ref(document.documentElement.clientHeight - 110)
-const fullHeight1 = ref(document.documentElement.clientHeight - 313)
-const isLogin = sessionStorage.getItem('isLogin') || null
+const sourseTotal = ref('123')
+const systemTotal = ref('30')
+const modelTotal = ref('78')
+const tableTotal = ref('165')
+const fullHeight = ref(document.documentElement.clientHeight - 105)
+const fullHeight1 = ref(document.documentElement.clientHeight - 310)
+
 const toPath = (val) => {
   router.push(val)
 }
 
 onMounted(() => {
+
   getSourceBasicCount()
   getSystemBasicCount()
   getDataModelCount()
@@ -157,6 +151,7 @@ onMounted(() => {
   // 设置 rem 函数
   function setRem() {
     const scale = document.documentElement.clientWidth / 1920
+    // console.log('重置根节点字体');
     // 设置页面根节点字体大小 最高为两倍图 即设计稿为750
     document.documentElement.style.fontSize = (baseSize * Math.min(scale, 2)) + 'px'
   }
@@ -198,6 +193,10 @@ const tableTotalUpdated = (newValue) => {
   console.log(newValue);
 }
 
+function goTarget(url) {
+  window.open(url, '__blank')
+}
+
 function getSourceBasicCount() {
   sourceBasicCount().then(res => {
     sourseTotal.value = res.data
@@ -221,19 +220,6 @@ function getDataTableCount() {
     tableTotal.value = res.data
   })
 }
-
-// watch(() => isLogin, (val) => {
-//   if (val) {
-//     let obj = JSON.parse(val)
-//     if (!obj.isLogin) {
-//       router.push('/login')
-//       ElMessage.error('请登录！')
-//     }
-//   } else {
-//     router.push('/login')
-//     ElMessage.error('请登录！')
-//   }
-// }, {deep: true, immediate: true})
 </script>
 
 <style scoped lang="scss">
@@ -408,8 +394,8 @@ function getDataTableCount() {
   }
 
   .homeTitle {
-    width: 20%;
-    height: 6.5rem;
+    width: 23%;
+    height: 7.2em;
     border-radius: 2px;
     font-size: 1.125rem;
     letter-spacing: 0;
@@ -422,15 +408,18 @@ function getDataTableCount() {
 
     .titleName {
       display: block;
-      width: 7.5rem;
+      width: 15rem;
       height: 2.5rem;
+      margin-left: 1rem;
+      text-align: left;
     }
 
     .titleQuantity {
       display: block;
       width: 7.5rem;
       height: 3.125rem;
-
+      margin-left: 1rem;
+      text-align: left;
     }
 
     .titleIcon {
@@ -451,6 +440,7 @@ function getDataTableCount() {
 
     .el-card__body {
       height: 100%;
+      padding: 30px 10px 30px 10px !important;
 
       .body {
         height: 75%;
@@ -476,6 +466,34 @@ function getDataTableCount() {
     }
   }
 
+}
+
+// /* 当屏幕宽度小于等于1750px时 */
+@media screen and (max-width: 1750px) {
+  .homeTop {
+    height: 13.8rem
+  }
+  .home {
+    ::v-deep .el-card {
+      .el-card__body {
+        padding: 35px 10px 35px 10px !important;
+      }
+    }
+  }
+}
+
+// /* 当屏幕宽度小于等于1350px时 */
+@media screen and (max-width: 1350px) {
+  .homeTop {
+    height: 15.8rem
+  }
+  .home {
+    ::v-deep .el-card {
+      .el-card__body {
+        padding: 40px 10px 40px 10px !important;
+      }
+    }
+  }
 }
 </style>
 

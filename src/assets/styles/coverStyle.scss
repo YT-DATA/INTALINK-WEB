@@ -151,7 +151,6 @@
 
     .el-select {
       min-width: 220px;
-
       .el-select__wrapper {
         font-size: 12px !important;
       }
@@ -159,6 +158,11 @@
 
     .el-textarea {
       font-size: 12px;
+    }
+  }
+  .user-form {
+    .el-select {
+      min-width: auto !important;
     }
   }
 

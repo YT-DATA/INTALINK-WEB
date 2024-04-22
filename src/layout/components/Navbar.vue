@@ -3,6 +3,9 @@
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" v-if="!settingsStore.topNav"/>
     <top-nav id="topmenu-container" class="topmenu-container" v-if="settingsStore.topNav"/>
     <div class="right-menu">
+      <template v-if="appStore.device !== 'mobile'">
+        <LangSelect class="marTop"></LangSelect>
+      </template>
       <div class="avatar-container">
         <el-dropdown @command="handleCommand" class="right-menu-item hover-effect" trigger="click">
           <div class="avatar-wrapper">
@@ -30,11 +33,12 @@ import Breadcrumb from '@/components/Breadcrumb'
 import TopNav from '@/components/TopNav'
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
+import LangSelect from "@/components/LangSelect/index.vue";
 
+const {proxy} = getCurrentInstance();
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const router = useRouter();
-
 
 
 function toggleSideBar() {
@@ -52,13 +56,12 @@ function handleCommand(command) {
 }
 
 function logout() {
-  ElMessageBox.confirm('确定注销并退出系统吗？', '提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.confirm(proxy.$t('PublicVariable.Delete_operation_tip'),(proxy.$t('PublicVariable.Popup_title')), {
+    confirmButtonText:(proxy.$t('btn.confirm')) ,
+    cancelButtonText: (proxy.$t('btn.cancel')),
     type: 'warning'
   }).then(() => {
     router.replace('/login')
-    useAppStore().setLoginState(false)
     sessionStorage.setItem("isLogin", JSON.stringify({isLogin: false}))
   }).catch(() => {
   });
@@ -158,6 +161,11 @@ function setLayout() {
         }
       }
     }
+  }
+
+  .marTop {
+    top: 50%;
+    margin-top: -5px;
   }
 }
 </style>

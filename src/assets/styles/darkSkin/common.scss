@@ -184,4 +184,27 @@
       background-color: $--color-button-disabled-border !important;
     }
   }
+  .el-collapse {
+    background-color: $--color-bg-main;
+    border-color: $--color-button-default-border;
+    color: $--color-primary-text;
+    .el-collapse-item__header {
+      background-color: $--color-bg-main;
+      border-color: $--color-button-default-border;
+      color: $--color-primary-text;
+      border-bottom: none;
+    }
+    .el-collapse-item__wrap {
+      border-color: $--color-button-default-border;
+    }
+    .el-collapse-item__content {
+      background-color: $--color-bg-main;
+      color: $--color-primary-text;
+    }
+    .el-tag.el-tag--default {
+      background-color: $--color-tag-primary !important;
+      border-color: $--color-tag-primary-border !important;
+      color: $--color-tag-text !important;
+    }
+  }
 }

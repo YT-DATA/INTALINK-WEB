@@ -94,7 +94,7 @@
           line-height: 28px !important;
         }
 
-        a, .el-dropdown-menu__item:hover {
+        a, .el-dropdown-menu__item:not(.is-disabled):hover {
           color: $--color-button-primary;
         }
       }

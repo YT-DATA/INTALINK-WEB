@@ -102,7 +102,47 @@ export const constantRoutes = [
         meta: {title: '系统管理', icon: 'system'}
       }
     ]
-  }
+  },
+  {
+    path: '/dataRelationship',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'dataRelationEntry',
+        component: () => import('@/views/dataRelationship/dataRelationEntry'),
+        name: 'dataRelationEntry',
+        meta: {title: '数据关系录入', icon: 'documentation'}
+      },
+      {
+        path: 'scoreMethodManage',
+        component: () => import('@/views/dataRelationship/scoreMethodManage'),
+        name: 'scoreMethodManage',
+        meta: {title: '评分方法管理', icon: 'table'}
+      },
+      {
+        path: 'scorePlanManage',
+        component: () => import('@/views/dataRelationship/scorePlanManage'),
+        name: 'scorePlanManage',
+        meta: {title: '评分方案管理', icon: 'tab'}
+      },
+    ]
+  },
+  {
+    path: '/dataRelationalApp',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'associationQuery',
+        component: () => import('@/views/dataRelationalApp/associationQuery'),
+        name: 'associationQuery',
+        meta: {title: '数据关联查询', icon: 'documentation'}
+      },
+    ]
+  },
 ]
 
 

@@ -11,7 +11,7 @@ const useAppStore = defineStore(
       },
       device: 'desktop',
       size: Cookies.get('size') || 'default',
-      isLogin: false
+      language: Cookies.get('language') || 'en'
     }),
     actions: {
       toggleSideBar(withoutAnimation) {
@@ -41,8 +41,8 @@ const useAppStore = defineStore(
       toggleSideBarHide(status) {
         this.sidebar.hide = status
       },
-      setLoginState(status) {
-        this.isLogin = status
+      setLanguage(language) {
+        this.language = language
       }
     }
   })
