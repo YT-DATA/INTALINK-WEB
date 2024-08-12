@@ -162,11 +162,13 @@ function getList() {
     dataList.value = response.rows;
     total.value = response.total;
     loading.value = false;
+if(dataList.value){
+  dataList.value.forEach(item => {
+    Reflect.set(item, 'status', false);
+    Reflect.set(item, 'isShow', false);
+  })
+}
 
-    dataList.value.forEach(item => {
-      Reflect.set(item, 'status', false);
-      Reflect.set(item, 'isShow', false);
-    })
   });
 
 
@@ -192,6 +194,10 @@ function handleAdd() {
     password: '',
     status: true,
     isShow: true
+  }
+  console.log(dataList.value)
+  if(dataList.value==null){
+    dataList.value=[]
   }
   dataList.value.unshift(lineData)
 }
