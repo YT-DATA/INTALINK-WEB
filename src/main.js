@@ -42,6 +42,7 @@ import ImagePreview from "@/components/ImagePreview"
 import TreeSelect from '@/components/TreeSelect'
 // 字典标签组件
 import DictTag from '@/components/DictTag'
+import {useDict} from '@/utils/dict'
 
 import {DataNexus} from 'datanexus-vue3';
 
@@ -53,6 +54,7 @@ const app = createApp(App)
 app.directive('animate', vAnimate);
 
 // 全局方法挂载
+app.config.globalProperties.useDict = useDict
 app.config.globalProperties.download = download
 app.config.globalProperties.parseTime = parseTime
 app.config.globalProperties.resetForm = resetForm

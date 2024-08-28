@@ -126,6 +126,34 @@ const mockMenuList = [
         }
       }
     ]
+  },
+  {
+    "name": "System",
+    "path": "/system",
+    "hidden": false,
+    "redirect": "noRedirect",
+    "component": "Layout",
+    "alwaysShow": true,
+    "meta": {
+      "title": "系统管理",
+      "icon": "system",
+      "noCache": false,
+      "link": null,
+    },
+    "children": [
+      {
+        "name": "Dict",
+        "path": "dict",
+        "hidden": false,
+        "component": "system/dict/index",
+        "meta": {
+          "title": "字典管理",
+          "icon": "dict",
+          "noCache": false,
+          "link": null
+        }
+      },
+    ]
   }
 ]
 

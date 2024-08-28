@@ -411,7 +411,7 @@ export default {
     Dictionary_Sort: "Dictionary sort",
     Creation_time: "Creation time",
     Remarks: "Remarks",
-    operation: "operation",
+    operation: "operation"
   },
   parameterSettings: {
     Parameter_Name: "Parameter Name",

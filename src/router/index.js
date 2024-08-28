@@ -143,12 +143,41 @@ export const constantRoutes = [
       },
     ]
   },
+  {
+    path: '/system',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'dict',
+        component: () => import('@/views/system/dict'),
+        name: 'dict',
+        meta: {title: '字典管理', icon: 'documentation'}
+      },
+    ]
+  },
 ]
 
 
 
 // 动态路由，基于用户权限动态去加载
-export const dynamicRoutes = []
+export const dynamicRoutes = [
+  {
+    path: '/system/dict-data',
+    component: Layout,
+    hidden: true,
+    permissions: ['system:dict:list'],
+    children: [
+      {
+        path: 'index/:dictId(\\d+)',
+        component: () => import('@/views/system/dict/data'),
+        name: 'Data',
+        meta: { title: '字典数据', activeMenu: '/system/dict' }
+      }
+    ]
+  }
+]
 
 const router = createRouter({
   // history: createWebHistory(),

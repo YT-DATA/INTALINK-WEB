@@ -26,8 +26,8 @@ export default defineConfig(({mode, command}) => {
     },
     // vite 相关配置
     server: {
-      port: 80,
-      host: true,
+      port: 8666,
+      host: false, // true代表开放ip访问
       open: true,
       proxy: {
         // # 打包正式环境

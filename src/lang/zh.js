@@ -263,7 +263,7 @@ export default {
     Start_date_Tip: "开始日期",
     End_date_Tip: "结束日期",
     Dictionary_title: "添加字典类型",
-    Dictionary_title_amend: "修改字典类型",
+    Dictionary_title_amend: "修改字典类型"
   },
   parameterSettings: {
     Parameter_Name: "参数名称",
