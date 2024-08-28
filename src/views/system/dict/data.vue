@@ -126,24 +126,24 @@
 
       <!-- 添加或修改参数配置对话框 -->
       <el-dialog :title="title" v-model="open" width="500px">
-         <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
-            <el-form-item label="字典类型">
+         <el-form ref="dataRef" :model="form" :rules="rules" :label-width="formLabelWidth">
+            <el-form-item :label="$t('dictManage.Dictionary_type')">
                <el-input v-model="form.dictType" :disabled="true" />
             </el-form-item>
-            <el-form-item label="数据标签" prop="dictLabel">
-               <el-input v-model="form.dictLabel" placeholder="请输入数据标签" />
+            <el-form-item :label="$t('dictManage.Dictionary_data_label')" prop="dictLabel">
+               <el-input v-model="form.dictLabel" :placeholder="$t('dictManage.Dictionary_Tag_Tip')"/>
             </el-form-item>
-            <el-form-item label="数据键值" prop="dictValue">
-               <el-input v-model="form.dictValue" placeholder="请输入数据键值" />
+            <el-form-item :label="$t('dictManage.Dictionary_KeyValue')" prop="dictValue">
+               <el-input v-model="form.dictValue" :placeholder="$t('dictManage.Dictionary_KeyValue_Tip')"/>
             </el-form-item>
-            <el-form-item label="样式属性" prop="cssClass">
-               <el-input v-model="form.cssClass" placeholder="请输入样式属性" />
+            <el-form-item :label="$t('dictManage.Dictionary_Style')" prop="cssClass">
+               <el-input v-model="form.cssClass" :placeholder="$t('PublicVariable.enter_tip')"/>
             </el-form-item>
-            <el-form-item label="显示排序" prop="dictSort">
+            <el-form-item :label="$t('dictManage.Display_sorting')" prop="dictSort">
                <el-input-number v-model="form.dictSort" controls-position="right" :min="0" />
             </el-form-item>
-            <el-form-item label="回显样式" prop="listClass">
-               <el-select v-model="form.listClass" :teleported="false">
+            <el-form-item :label="$t('dictManage.Echo_Style')" prop="listClass">
+               <el-select v-model="form.listClass" :teleported="false" :placeholder="$t('PublicVariable.select_tip')">
                   <el-option
                      v-for="item in listClassOptions"
                      :key="item.value"
@@ -152,7 +152,7 @@
                   ></el-option>
                </el-select>
             </el-form-item>
-            <el-form-item label="状态" prop="status">
+            <el-form-item :label="$t('dictManage.state')" prop="status">
                <el-radio-group v-model="form.status">
                   <el-radio
                      v-for="dict in sys_normal_disable"
@@ -162,7 +162,7 @@
                </el-radio-group>
             </el-form-item>
             <el-form-item :label="$t('PublicVariable.Remarks')" prop="remark">
-               <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+               <el-input v-model="form.remark" type="textarea" :placeholder="$t('PublicVariable.enter_tip')"></el-input>
             </el-form-item>
          </el-form>
          <template #footer>
@@ -179,6 +179,7 @@
 import useDictStore from '@/store/modules/dict'
 import { optionselect as getDictOptionselect, getType } from "@/api/system/dict/type";
 import { listData, getData, delData, addData, updateData } from "@/api/system/dict/data";
+import useAppStore from "@/store/modules/app.js";
 
 const { proxy } = getCurrentInstance();
 const { sys_normal_disable } = proxy.useDict("sys_normal_disable");
@@ -204,6 +205,22 @@ const listClassOptions = ref([
   { value: "warning", label: "警告" },
   { value: "danger", label: "危险" }
 ]);
+const appStore = useAppStore();
+const lang = ref("");
+const formLabelWidth = ref("80px");
+
+const getLabelWidth = () => {
+  if (lang.value !== 'en') {
+    formLabelWidth.value = '150px';
+  } else {
+    formLabelWidth.value = '80px';
+  }
+}
+
+watch(() => appStore.language, (value) => {
+  lang.value = value;
+  getLabelWidth();
+}, {immediate: true, deep: true})
 
 const data = reactive({
   form: {},
@@ -286,7 +303,7 @@ function resetQuery() {
 function handleAdd() {
   reset();
   open.value = true;
-  title.value = "添加字典数据";
+  title.value = proxy.$t('dictManage.Dictionary_data');
   form.value.dictType = queryParams.value.dictType;
 }
 /** 多选框选中数据 */
@@ -302,7 +319,7 @@ function handleUpdate(row) {
   getData(dictCode).then(response => {
     form.value = response.data;
     open.value = true;
-    title.value = "修改字典数据";
+    title.value = proxy.$t('dictManage.Dictionary_title_data');
   });
 }
 /** 提交按钮 */
@@ -312,14 +329,14 @@ function submitForm() {
       if (form.value.dictCode != undefined) {
         updateData(form.value).then(response => {
           useDictStore().removeDict(queryParams.value.dictType);
-          proxy.$modal.msgSuccess("修改成功");
+          proxy.$modal.msgSuccess(proxy.$t('userManage.Modified_successfully'));
           open.value = false;
           getList();
         });
       } else {
         addData(form.value).then(response => {
           useDictStore().removeDict(queryParams.value.dictType);
-          proxy.$modal.msgSuccess("新增成功");
+          proxy.$modal.msgSuccess(proxy.$t('userManage.New_successfully_added'));
           open.value = false;
           getList();
         });

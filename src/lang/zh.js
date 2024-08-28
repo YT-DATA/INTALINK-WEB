@@ -252,6 +252,11 @@ export default {
   dictManage: {
     Dictionary_Name: "字典名称",
     Dictionary_type: "字典类型",
+    Dictionary_data_label: "数据标签",
+    Dictionary_KeyValue: "数据键值",
+    Dictionary_Style: "样式属性",
+    Display_sorting: "显示排序",
+    Echo_Style: "回显样式",
     state: "状态",
     Creation_time: "创建时间",
     Dictionary_number: "字典编号",
@@ -259,11 +264,15 @@ export default {
     operation: "操作",
     Dictionary_Name_Tip: "请输入字典名称",
     Dictionary_type_Tip: "请输入字典类型",
+    Dictionary_KeyValue_Tip: "请输入数据键值",
+    Dictionary_Tag_Tip: "请输入数据标签",
     state_Tip: "请选择字典状态",
     Start_date_Tip: "开始日期",
     End_date_Tip: "结束日期",
     Dictionary_title: "添加字典类型",
-    Dictionary_title_amend: "修改字典类型"
+    Dictionary_data: "添加字典数据",
+    Dictionary_title_amend: "修改字典类型",
+    Dictionary_title_data: "修改字典数据"
   },
   parameterSettings: {
     Parameter_Name: "参数名称",

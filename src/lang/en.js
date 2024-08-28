@@ -389,6 +389,11 @@ export default {
   dictManage: {
     Dictionary_Name: "Dictionary Name",
     Dictionary_type: "Dictionary type",
+    Dictionary_data_label: "Dictionary label",
+    Dictionary_KeyValue: "Dictionary KeyValue",
+    Dictionary_Style: "Dictionary style",
+    Display_sorting: "Display sorting",
+    Echo_Style: "Echo style",
     state: "state",
     Creation_time: "Creation time",
     Dictionary_number: "Dictionary number",
@@ -396,11 +401,15 @@ export default {
     operation: "operation",
     Dictionary_Name_Tip: "Please enter the dictionary name",
     Dictionary_type_Tip: "Please enter the dictionary type",
+    Dictionary_KeyValue_Tip: "Please enter the Key Value",
+    Dictionary_Tag_Tip: "Please enter the dictionary tag",
     state_Tip: "Please select the dictionary status",
     Start_date_Tip: "Start date",
     End_date_Tip: "End date",
     Dictionary_title: "Add Dictionary Type",
+    Dictionary_data: "Add Dictionary Data",
     Dictionary_title_amend: "Amend Dictionary Type",
+    Dictionary_title_data: "Amend Dictionary Data"
   },
   dictData: {
     Dictionary_Name: "Dictionary Name",

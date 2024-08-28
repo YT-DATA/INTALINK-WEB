@@ -104,7 +104,7 @@
         >{{ $t('btn.refcache') }}
         </el-button>
       </el-col>
-      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
+<!--      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>-->
     </el-row>
 
     <el-table v-loading="loading" :data="typeList" @selection-change="handleSelectionChange">
@@ -204,12 +204,8 @@ const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
 const dateRange = ref([]);
-const appStore = useAppStore()
+const appStore = useAppStore();
 const lang = ref("");
-const labelWidthArr = reactive({
-  Dictionary_Name: '130px',
-  Dictionary_type: '130px',
-});
 const formLabelWidth = ref("80px");
 
 const getLabelWidth = () => {
