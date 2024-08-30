@@ -39,19 +39,33 @@
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="数据库名称" align="center" prop="dataSourceName" show-overflow-tooltip>
+      <el-table-column label="数据库名称" align="left" prop="dataSourceName"  show-overflow-tooltip >
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataSourceName"></el-input>
           <span v-else>{{ row.dataSourceName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据库类型" align="center" prop="databaseType">
+      <el-table-column label="数据库类型" align="left" prop="databaseType">
         <template #default="{row}">
-          <el-input v-if="row.status" v-model="row.databaseType"></el-input>
+<!--          <el-input v-if="row.status" v-model="row.databaseType"></el-input>-->
+          <el-select
+              v-if="row.status"
+              v-model="row.databaseType"
+              :placeholder="$t('PublicVariable.select_tip')"
+              :no-data-text="$t('PublicVariable.No_data_available')"
+              clearable
+          >
+            <el-option
+                v-for="dict in database_type"
+                :key="dict.value"
+                :label="dict.label"
+                :value="dict.value"
+            />
+          </el-select>
           <span v-else>{{ row.databaseType }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据库URL" align="center" prop="url" show-overflow-tooltip>
+      <el-table-column label="数据库URL" align="left" prop="url" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.url"></el-input>
           <span v-else>{{ row.url }}
@@ -59,13 +73,13 @@
           <!--          <el-tooltip>{{ row.url }}</el-tooltip>-->
         </template>
       </el-table-column>
-      <el-table-column label="用户名" align="center" prop="userName">
+      <el-table-column label="用户名" align="left" prop="userName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.userName"></el-input>
           <span v-else>{{ row.userName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="密码" align="center" prop="password">
+      <el-table-column label="密码" align="left" prop="password">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.password"></el-input>
           <span v-else>
@@ -107,6 +121,7 @@ import {deleteSourceBasic, insertSourceBasicList, listSource} from "@/api/config
 import {ElMessage} from "element-plus";
 
 const {proxy} = getCurrentInstance();
+const {database_type} = proxy.useDict("database_type");
 // 使用 inject 获取 DataNexus 提供的方法
 const dataNexus = inject('dataNexus');
 const loading = ref(true);

@@ -54,7 +54,7 @@
       <el-col :span="20" :xs="24" class="right-section">
         <el-table :data="tableData" v-if="tableData.length" :empty-text="$t('PublicVariable.No_data_available')">
           <el-table-column type="index" width="50" align="center"/>
-          <el-table-column :label="item.name" align="center" :key="index" :prop="item.title"
+          <el-table-column :label="item.name" :align="item.name=='销售金额'?'right':'left'" :key="index" :prop="item.title"
                            v-for="(item,index) in tableHeader"></el-table-column>
         </el-table>
         <pagination

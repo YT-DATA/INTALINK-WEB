@@ -53,7 +53,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('columnManagement.operation')" width="592" align="center"
+      <el-table-column :label="$t('columnManagement.operation')"  align="center"
                        class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)"

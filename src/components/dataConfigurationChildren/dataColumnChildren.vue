@@ -80,31 +80,31 @@
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="数据项名称" align="center" prop="dataColumnName">
+      <el-table-column label="数据项名称" align="left" prop="dataColumnName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataColumnName"></el-input>
           <span v-else>{{ row.dataColumnName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据项编码" align="center" prop="dataColumnCode">
+      <el-table-column label="数据项编码" align="left" prop="dataColumnCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataColumnCode"></el-input>
           <span v-else>{{ row.dataColumnCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据项描述" align="center" prop="dataColumnRemark">
+      <el-table-column label="数据项描述" align="left" prop="dataColumnRemark">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataColumnRemark"></el-input>
           <span v-else>{{ row.dataColumnRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据模型名称" align="center" prop="dataModelName">
+      <el-table-column label="数据模型名称" align="left" prop="dataModelName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelName"></el-input>
           <span v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据表名称" align="center" prop="dataTableName">
+      <el-table-column label="数据表名称" align="left" prop="dataTableName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataTableName"></el-input>
           <span v-else>{{ row.dataTableName }}</span>

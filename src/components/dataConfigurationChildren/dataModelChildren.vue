@@ -48,25 +48,25 @@
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="模型名称" align="center" prop="dataModelName" show-overflow-tooltip>
+      <el-table-column label="模型名称" align="left" prop="dataModelName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelName"></el-input>
           <span v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="模型编码" align="center" prop="dataModelCode">
+      <el-table-column label="模型编码" align="left" prop="dataModelCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelCode"></el-input>
           <span v-else>{{ row.dataModelCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="模型描述" align="center" prop="dataModelRemark" show-overflow-tooltip>
+      <el-table-column label="模型描述" align="left" prop="dataModelRemark" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelRemark"></el-input>
           <span v-else>{{ row.dataModelRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据表数" align="center" prop="dataTableCount">
+      <el-table-column label="数据表数" align="left" prop="dataTableCount">
         <template #default="{row}">
           <!--          <el-input v-if="row.status" v-model="row.dataTableCount"></el-input>-->
           <span>{{ row.dataTableCount }}</span>

@@ -38,12 +38,12 @@
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange" :empty-text="$t('PublicVariable.No_data_available')">
       <el-table-column type="selection" width="70" align="center"/>
-      <el-table-column type="index" align="center" :label="$t('departmentManage.sort')"  >
+      <el-table-column type="index" width="425" align="left" :label="$t('departmentManage.sort')"  >
         <template #default="scope">
           <span v-text="getIndex(scope.$index)"></span>
         </template>
       </el-table-column>
-      <el-table-column  :label="$t('scoreMethodManage.methodName')" align="center" prop="evaluationMethodName">
+      <el-table-column  :label="$t('scoreMethodManage.methodName')"  align="left" prop="evaluationMethodName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.evaluationMethodName"></el-input>
           <span v-else>{{ row.evaluationMethodName }}</span>
@@ -80,7 +80,7 @@
         </el-form-item>
 
       </el-form>
-      
+
       <template #footer>
         <div class="dialog-footer">
           <el-button @click="cancel">{{ $t('btn.cancel') }}</el-button>
@@ -121,7 +121,7 @@ const ruleForm = reactive({
   edit:false
 });
 const rules = reactive({
-  
+
   name: [
     { required: true, message: '请输入方法名称', trigger: 'blur' },
   ]
@@ -243,7 +243,7 @@ function submitForm() {
 
         getList();
       });
-      
+
 
       open.value = false;
     } else {

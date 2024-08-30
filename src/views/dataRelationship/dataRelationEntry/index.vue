@@ -178,7 +178,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('columnManagement.operation')" width="180" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('columnManagement.operation')" width="180" align="left" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button  link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
                      v-hasPermi="['dataRelationship:dataRelationEntry:edit']">{{ $t('btn.edit') }}
@@ -242,7 +242,7 @@
         </el-col>
       </el-row>
       <el-table v-loading="loading" :data="popupDataList" :empty-text="$t('PublicVariable.No_data_available')">
-        <el-table-column :label="$t('DataRelationEntry.Main_model')" align="center" prop="dataModelId">
+        <el-table-column :label="$t('DataRelationEntry.Main_model')" align="left" prop="dataModelId">
           <template #default="{row}">
             <el-select
                 v-model="row.dataModelId"
@@ -259,7 +259,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Master_Data_Table')" align="center" prop="dataTableId">
+        <el-table-column :label="$t('DataRelationEntry.Master_Data_Table')" align="left" prop="dataTableId">
           <template #default="{row}">
             <el-select
                 v-model="row.dataTableId"
@@ -276,7 +276,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Master_data_item')" align="center" prop="dataColumnId">
+        <el-table-column :label="$t('DataRelationEntry.Master_data_item')" align="left" prop="dataColumnId">
           <template #default="{row}">
             <el-select
                 v-model="row.dataColumnId"
@@ -293,7 +293,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Associative_mode')" align="center" prop="relationType" show-overflow-tooltip>
+        <el-table-column :label="$t('DataRelationEntry.Associative_mode')" align="left" prop="relationType" show-overflow-tooltip>
           <template #default="{row}">
             <el-select
                 v-model="row.relationType"
@@ -310,7 +310,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Correlation_model')" align="center" prop="relationDataModelId">
+        <el-table-column :label="$t('DataRelationEntry.Correlation_model')" align="left" prop="relationDataModelId">
           <template #default="{row}">
             <el-select
                 v-model="row.relationDataModelId"
@@ -327,7 +327,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Associated_data_table')" align="center" prop="relationDataTableId">
+        <el-table-column :label="$t('DataRelationEntry.Associated_data_table')" align="left" prop="relationDataTableId">
           <template #default="{row}">
             <el-select
                 v-model="row.relationDataTableId"
@@ -344,7 +344,7 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('DataRelationEntry.Associated_data_item')" align="center" prop="relationDataColumnId">
+        <el-table-column :label="$t('DataRelationEntry.Associated_data_item')" align="left" prop="relationDataColumnId">
           <template #default="{row}">
             <el-select
                 v-model="row.relationDataColumnId"

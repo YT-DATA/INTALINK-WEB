@@ -119,13 +119,13 @@
           </router-link>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('dictManage.state')" align="center" prop="status">
+      <el-table-column :label="$t('dictManage.state')" align="left" prop="status">
         <template #default="scope">
           <dict-tag :options="sys_normal_disable" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('dictManage.Remarks')" align="center" prop="remark" :show-overflow-tooltip="true"/>
-      <el-table-column :label="$t('dictManage.Creation_time')" align="center" prop="createTime" width="180">
+      <el-table-column :label="$t('dictManage.Remarks')" align="left" prop="remark" :show-overflow-tooltip="true"/>
+      <el-table-column :label="$t('dictManage.Creation_time')" align="left" prop="createTime" width="180">
         <template #default="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>

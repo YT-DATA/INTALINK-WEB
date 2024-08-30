@@ -49,31 +49,31 @@
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="系统名称" align="center" prop="systemName" show-overflow-tooltip>
+      <el-table-column label="系统名称" align="left" prop="systemName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemName"></el-input>
           <span v-else>{{ row.systemName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="系统编码" align="center" prop="systemCode">
+      <el-table-column label="系统编码" align="left" prop="systemCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemCode"></el-input>
           <span v-else>{{ row.systemCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="系统描述" align="center" prop="systemRemark" show-overflow-tooltip>
+      <el-table-column label="系统描述" align="left" prop="systemRemark" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemRemark"></el-input>
           <span v-else>{{ row.systemRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="center" prop="creatTime">
+      <el-table-column label="创建时间" align="left" prop="creatTime">
         <template #default="{row}">
           <!--          <el-input v-if="row.status" v-model="row.creatTime"></el-input>-->
           <span>{{ row.creatTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="关联数据源" align="center" prop="dataSourceId">
+      <el-table-column label="关联数据源" align="left" prop="dataSourceId">
         <template #default="{row}">
           <el-select
               v-model="row.dataSourceId"
@@ -91,7 +91,7 @@
           <span v-else>{{ row.dataSourceName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="关联数据模型" align="center" prop="dataModelId">
+      <el-table-column label="关联数据模型" align="left" prop="dataModelId">
         <template #default="{row}">
           <el-select
               v-model="row.dataModelId"
