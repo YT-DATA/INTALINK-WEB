@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true">
-      <el-form-item label="模型名称" prop="dataModelName">
+      <el-form-item :label="$t('modelManagement.Model_Name')" prop="dataModelName">
         <el-input
             v-model="queryParams.dataModelName"
-            placeholder="请输入模型名称"
+            :placeholder="$t('modelManagement.Model_Name_Tip')"
             clearable
             style="width: 200px"
             @keyup.enter="handleQuery"
@@ -12,7 +12,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
+        <el-button type="primary" icon="Search" @click="handleQuery">{{ $t('btn.search') }}</el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="10" class="mb8">
@@ -22,7 +22,7 @@
             plain
             icon="Plus"
             @click="handleAdd"
-        >新增
+        >{{ $t('btn.add') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -32,7 +32,7 @@
             icon="Delete"
             :disabled="multiple"
             @click="handleDelete"
-        >批量删除
+        >{{ $t('btn.batchDelete') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -41,45 +41,45 @@
             plain
             icon="Upload"
             @click="handleImport"
-        >导入
+        >{{ $t('btn.import') }}
         </el-button>
       </el-col>
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="模型名称" align="left" prop="dataModelName" show-overflow-tooltip>
+      <el-table-column :label="$t('modelManagement.Model_Name')" align="left" prop="dataModelName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelName"></el-input>
           <span v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="模型编码" align="left" prop="dataModelCode">
+      <el-table-column :label="$t('modelManagement.Model_coding')" align="left" prop="dataModelCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelCode"></el-input>
           <span v-else>{{ row.dataModelCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="模型描述" align="left" prop="dataModelRemark" show-overflow-tooltip>
+      <el-table-column :label="$t('modelManagement.Model_Description')" align="left" prop="dataModelRemark" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelRemark"></el-input>
           <span v-else>{{ row.dataModelRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据表数" align="left" prop="dataTableCount">
+      <el-table-column :label="$t('modelManagement.table_Number')" align="left" prop="dataTableCount">
         <template #default="{row}">
           <!--          <el-input v-if="row.status" v-model="row.dataTableCount"></el-input>-->
           <span>{{ row.dataTableCount }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="300" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('modelManagement.operation')" width="300" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
-          <el-button link type="primary" icon="Upload" @click="handleImportPDM(scope.row)">导入PDM</el-button>
-          <el-button v-if="!scope.row.status" link type="primary" icon="Edit" @click="handleUpdate(scope.row)">修改
+          <el-button link type="primary" icon="Upload" @click="handleImportPDM(scope.row)">{{ $t('btn.PDMImport') }}</el-button>
+          <el-button v-if="!scope.row.status" link type="primary" icon="Edit" @click="handleUpdate(scope.row)">{{ $t('btn.edit') }}
           </el-button>
-          <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)">保存</el-button>
+          <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)">{{ $t('btn.save') }}</el-button>
 
-          <el-button link type="primary" icon="Edit" @click="dataTableConfig(scope.row)">数据表配置</el-button>
+          <el-button link type="primary" icon="Edit" @click="dataTableConfig(scope.row)">{{ $t('btn.Table_configuration') }}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -108,11 +108,11 @@
         <el-icon class="el-icon--upload">
           <upload-filled/>
         </el-icon>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__text">{{ $t('PublicVariable.Drag_files_tip') }}<em>点击上传</em></div>
         <template #tip>
           <div class="el-upload__tip text-center">
 
-            <span>仅允许导入xls、xlsx格式文件。</span>
+            <span>{{ $t('PublicVariable.importing_xls_tip') }}。</span>
             <el-link type="primary" :underline="false" style="font-size:12px;vertical-align: baseline;"
                      @click="importTemplate">下载模板
             </el-link>
@@ -121,8 +121,8 @@
       </el-upload>
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary" @click="submitFileForm">确 定</el-button>
-          <el-button @click="upload.open = false">取 消</el-button>
+          <el-button type="primary" @click="submitFileForm">{{ $t('btn.confirm') }}</el-button>
+          <el-button @click="upload.open = false">{{ $t('btn.cancel') }}</el-button>
         </div>
       </template>
     </el-dialog>
@@ -143,19 +143,19 @@
         <el-icon class="el-icon--upload">
           <upload-filled/>
         </el-icon>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__text">{{ $t('PublicVariable.Drag_files_tip') }}<em>点击上传</em></div>
         <template #tip>
           <div class="el-upload__tip text-center">
 
-            <span>仅允许导入PDM格式文件。</span>
+            <span>{{ $t('PublicVariable.importing_PDM_tip') }}。</span>
 
           </div>
         </template>
       </el-upload>
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary" @click="submitPDMFileForm">确 定</el-button>
-          <el-button @click="uploadPDM.open = false">取 消</el-button>
+          <el-button type="primary" @click="submitPDMFileForm">{{ $t('btn.confirm') }}</el-button>
+          <el-button @click="uploadPDM.open = false">{{ $t('btn.cancel') }}</el-button>
         </div>
       </template>
     </el-dialog>

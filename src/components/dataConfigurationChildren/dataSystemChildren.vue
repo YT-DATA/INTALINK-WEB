@@ -1,20 +1,20 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true">
-      <el-form-item label="系统名称" prop="systemName">
+      <el-form-item :label="$t('systemManagement.System_Name')" prop="systemName">
         <el-input
             v-model="queryParams.systemName"
-            placeholder="请输入系统名称"
+            :placeholder="$t('systemManagement.System_Name_Tip')"
             clearable
             style="width: 200px"
             @keyup.enter="handleQuery"
             @change="handleDataSystemChange"
         />
       </el-form-item>
-      <el-form-item label="系统编码" prop="systemCode">
+      <el-form-item :label="$t('systemManagement.System_coding')" prop="systemCode">
         <el-input
             v-model="queryParams.systemCode"
-            placeholder="请输入系统名称"
+            :placeholder="$t('systemManagement.System_coding_Tip')"
             clearable
             style="width: 200px"
             @keyup.enter="handleQuery"
@@ -22,7 +22,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
+        <el-button type="primary" icon="Search" @click="handleQuery">{{ $t('btn.search') }}</el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="10" class="mb8">
@@ -32,7 +32,7 @@
             plain
             icon="Plus"
             @click="handleAdd"
-        >新增
+        >{{ $t('btn.add') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -42,38 +42,38 @@
             icon="Delete"
             :disabled="multiple"
             @click="handleDelete"
-        >批量删除
+        >{{ $t('btn.batchDelete') }}
         </el-button>
       </el-col>
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="系统名称" align="left" prop="systemName" show-overflow-tooltip>
+      <el-table-column :label="$t('systemManagement.System_Name')" align="left" prop="systemName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemName"></el-input>
           <span v-else>{{ row.systemName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="系统编码" align="left" prop="systemCode">
+      <el-table-column :label="$t('systemManagement.System_coding')" align="left" prop="systemCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemCode"></el-input>
           <span v-else>{{ row.systemCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="系统描述" align="left" prop="systemRemark" show-overflow-tooltip>
+      <el-table-column :label="$t('systemManagement.System_Description')" align="left" prop="systemRemark" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.systemRemark"></el-input>
           <span v-else>{{ row.systemRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" align="left" prop="creatTime">
+      <el-table-column :label="$t('systemManagement.Creation_time')" align="left" prop="creatTime">
         <template #default="{row}">
           <!--          <el-input v-if="row.status" v-model="row.creatTime"></el-input>-->
           <span>{{ row.creatTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="关联数据源" align="left" prop="dataSourceId">
+      <el-table-column :label="$t('systemManagement.Associate_data_sources')" align="left" prop="dataSourceId">
         <template #default="{row}">
           <el-select
               v-model="row.dataSourceId"
@@ -91,7 +91,7 @@
           <span v-else>{{ row.dataSourceName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="关联数据模型" align="left" prop="dataModelId">
+      <el-table-column :label="$t('systemManagement.Associated_data_model')" align="left" prop="dataModelId">
         <template #default="{row}">
           <el-select
               v-model="row.dataModelId"
@@ -109,13 +109,13 @@
           <span v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('systemManagement.operation')" width="180" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button v-if="!scope.row.status" link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
-          >修改
+          >{{ $t('btn.edit') }}
           </el-button>
           <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)"
-          >保存
+          >{{ $t('btn.save') }}
           </el-button>
         </template>
       </el-table-column>

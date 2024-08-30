@@ -1,10 +1,10 @@
 <template>
   <div class="app-container data-source-children">
     <el-form :model="queryParams" ref="queryRef" :inline="true">
-      <el-form-item label="数据库名称" prop="dataSourceName">
+      <el-form-item :label="$t('sourceManagement.Database_name')" prop="dataSourceName">
         <el-input
             v-model="queryParams.dataSourceName"
-            placeholder="请输入数据库名称"
+            :placeholder="$t('sourceManagement.Database_Name_Tip')"
             clearable
             style="width: 200px"
             @keyup.enter="handleQuery"
@@ -12,7 +12,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
+        <el-button type="primary" icon="Search" @click="handleQuery">{{ $t('btn.search') }}</el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="10" class="mb8">
@@ -22,7 +22,7 @@
             plain
             icon="Plus"
             @click="handleAdd"
-        >新增
+        >{{ $t('btn.add') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -32,20 +32,20 @@
             icon="Delete"
             :disabled="multiple"
             @click="handleDelete"
-        >批量删除
+        >{{ $t('btn.batchDelete') }}
         </el-button>
       </el-col>
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="数据库名称" align="left" prop="dataSourceName"  show-overflow-tooltip >
+      <el-table-column :label="$t('sourceManagement.Database_name')" align="left" prop="dataSourceName"  show-overflow-tooltip >
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataSourceName"></el-input>
           <span v-else>{{ row.dataSourceName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据库类型" align="left" prop="databaseType">
+      <el-table-column :label="$t('sourceManagement.Database_type')" align="left" prop="databaseType">
         <template #default="{row}">
 <!--          <el-input v-if="row.status" v-model="row.databaseType"></el-input>-->
           <el-select
@@ -65,7 +65,7 @@
           <span v-else>{{ row.databaseType }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据库URL" align="left" prop="url" show-overflow-tooltip>
+      <el-table-column :label="$t('sourceManagement.Database_URL')" align="left" prop="url" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.url"></el-input>
           <span v-else>{{ row.url }}
@@ -73,13 +73,13 @@
           <!--          <el-tooltip>{{ row.url }}</el-tooltip>-->
         </template>
       </el-table-column>
-      <el-table-column label="用户名" align="left" prop="userName">
+      <el-table-column :label="$t('sourceManagement.user_name')" align="left" prop="userName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.userName"></el-input>
           <span v-else>{{ row.userName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="密码" align="left" prop="password">
+      <el-table-column :label="$t('sourceManagement.password')" align="left" prop="password">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.password"></el-input>
           <span v-else>
@@ -92,13 +92,13 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('sourceManagement.operation')" width="180" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button v-if="!scope.row.status" link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
-          >修改
+          >{{ $t('btn.edit') }}
           </el-button>
           <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)"
-          >保存
+          >{{ $t('btn.save') }}
           </el-button>
         </template>
       </el-table-column>

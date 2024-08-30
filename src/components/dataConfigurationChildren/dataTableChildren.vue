@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true">
-      <el-form-item label="所属模型" prop="dataModelId">
+      <el-form-item :label="$t('tableManagement.Belonging_model')" prop="dataModelId">
         <el-select
             v-model="queryParams.dataModelId"
-            placeholder="请选择所属模型"
+            :placeholder="$t('tableManagement.Belonging_model_Tip')"
             :teleported="false"
             @change="handleModelValueChange"
             clearable
@@ -17,10 +17,10 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="数据表名称" prop="dataTableName">
+      <el-form-item :label="$t('tableManagement.Data_Table_Name')" prop="dataTableName">
         <el-input
             v-model="queryParams.dataTableName"
-            placeholder="请输入数据表名称"
+            :placeholder="$t('tableManagement.Data_Table_Name_Tip')"
             clearable
             style="width: 200px"
             @keyup.enter="handleQuery"
@@ -29,7 +29,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
+        <el-button type="primary" icon="Search" @click="handleQuery">{{ $t('btn.search') }}</el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="10" class="mb8">
@@ -39,7 +39,7 @@
             plain
             icon="Plus"
             @click="handleAdd"
-        >新增
+        >{{ $t('btn.add') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -49,7 +49,7 @@
             icon="Delete"
             :disabled="multiple"
             @click="handleDelete"
-        >批量删除
+        >{{ $t('btn.batchDelete') }}
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -58,47 +58,47 @@
             plain
             icon="Upload"
             @click="handleImport"
-        >导入
+        >{{ $t('btn.import') }}
         </el-button>
       </el-col>
     </el-row>
 
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="数据表名称" align="left" prop="dataTableName" show-overflow-tooltip>
+      <el-table-column :label="$t('tableManagement.Data_Table_Name')" align="left" prop="dataTableName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataTableName"></el-input>
           <span v-else>{{ row.dataTableName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据表编码" align="left" prop="dataTableCode">
+      <el-table-column :label="$t('tableManagement.Data_Table_Encoding')" align="left" prop="dataTableCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataTableCode"></el-input>
           <span v-else>{{ row.dataTableCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据表描述" align="left" prop="dataTableRemark" show-overflow-tooltip>
+      <el-table-column :label="$t('tableManagement.Data_Table_Description')" align="left" prop="dataTableRemark" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataTableRemark"></el-input>
           <span v-else>{{ row.dataTableRemark }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="数据模型名称" align="left" prop="dataModelName">
+      <el-table-column :label="$t('tableManagement.Data_Model_Name')" align="left" prop="dataModelName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelName"></el-input>
           <span v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('tableManagement.operation')" width="180" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="dataTableConfig(scope.row)"
-          >数据项配置
+          >{{ $t('btn.DataItem_configuration') }}
           </el-button>
           <el-button v-if="!scope.row.status" link type="primary" icon="Edit" @click="handleUpdate(scope.row)"
-          >修改
+          >{{ $t('btn.edit') }}
           </el-button>
           <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)"
-          >保存
+          >{{ $t('btn.save') }}
           </el-button>
         </template>
       </el-table-column>
