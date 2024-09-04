@@ -139,3 +139,22 @@ export function insertOrUpdateSchemeMethod(query,data) {
         data: query
     })
 }
+
+// 数据探查启动
+export function relationshipAnalysisStart() {
+    return request({
+        url: '/relationshipAnalysis/start',
+        method: 'get',
+    })
+}
+
+
+// 数据探查状态获取
+export function getRelationshipAnalysisStatus() {
+    return request({
+        url: '/relationshipAnalysis/getRelationshipAnalysisStatus',
+        method: 'get',
+    })
+}
+
+

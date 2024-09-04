@@ -127,6 +127,12 @@ export const constantRoutes = [
         name: 'scorePlanManage',
         meta: {title: '评分方案管理', icon: 'tab'}
       },
+      {
+        path: 'dataExploration',
+        component: () => import('@/views/dataRelationship/dataExploration'),
+        name: 'dataExploration',
+        meta: {title: '数据关系探查', icon: 'documentation'}
+      },
     ]
   },
   {

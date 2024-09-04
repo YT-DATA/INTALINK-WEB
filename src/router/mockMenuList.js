@@ -96,6 +96,18 @@ const mockMenuList = [
           "noCache": false,
           "link": null
         }
+      },
+      {
+        "name": "dataExploration",
+        "path": "dataExploration",
+        "hidden": false,
+        "component": "dataRelationship/dataExploration/index",
+        "meta": {
+          "title": "数据关系探查",
+          "icon": "documentation",
+          "noCache": false,
+          "link": null
+        }
       }
     ]
   },

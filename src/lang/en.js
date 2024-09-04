@@ -65,6 +65,7 @@ export default {
     评分方案管理: "Scoring scheme management",
     数据关系应用: "Data relational application",
     数据关联查询: "Data association query",
+    数据关系探查:"Data Relationship Exploration"
   },
   common: {
     search: 'Please enter the menu you want to query',
@@ -133,6 +134,7 @@ export default {
     cache: "Cache",
     dont_cache: "Don't cache",
     whether_cache: "Whether cache",
+    start_exploration:"Start Exploration"
   },
   PublicVariable: {
     select_tip: "Please select",
