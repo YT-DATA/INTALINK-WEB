@@ -396,6 +396,7 @@ export default {
     评分方案管理: "评分方案管理",
     数据关系应用: "数据关系应用",
     数据关联查询: "数据关联查询",
+    数据关系探查: "数据关系探查",
   },
   common: {
     search: '请输入要查询的菜单',
@@ -464,6 +465,7 @@ export default {
     caChe: "缓存",
     dont_cache: "不缓存",
     whether_cacheL: "是否缓存",
+    start_exploration:"开始探查"
 
   },
   PublicVariable: {
