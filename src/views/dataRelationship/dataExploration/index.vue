@@ -11,7 +11,7 @@
       </div>
     <!-- 添加或修改方案名称对话框 -->
     <!-- <el-dialog title="数据关系探查日志" v-model="open" width="500px">
-      
+
     </el-dialog> -->
   </div>
 </template>
@@ -31,11 +31,11 @@ const heartbeatTimer = ref(null)
     let text = window.location.host;
     text = "ws://" + text
     //线上
-    // const url = text + '/websocket/log';
+    const url = text + '/websocket/log';
     //兰本地
     // const url = 'ws://localhost:8888/websocket/log';
     //何本地
-    const url = 'ws://175.47.100.175:9207/websocket/log';
+    // const url = 'ws://175.47.100.175:9207/websocket/log';
     console.log(url,'url')
 
     //启动websocket
@@ -43,7 +43,7 @@ const heartbeatTimer = ref(null)
       // open.value = true
       disabled.value = true
       socket.value = new WebSocket(url);
- 
+
       socket.value.onopen = () => {
         console.log('WebSocket已连接');
         socket.value.send('PING');
@@ -53,17 +53,17 @@ const heartbeatTimer = ref(null)
         // }, 3000);
         socket.value.isConnected = true;
       };
- 
+
       socket.value.onerror = (error) => {
         console.error('报错:', error);
       };
- 
+
       socket.value.onmessage = (message) => {
         // console.log('新消息:', message.data);
         log.value = message.data+'\n'+log.value
         // scrollToBottom('rizhi')
       };
- 
+
       socket.value.onclose = () => {
         console.log('连接关闭');
         // 清除定时器
@@ -78,7 +78,7 @@ const heartbeatTimer = ref(null)
         socket.value.send('Your message here');
       }
     };
- 
+
     const disconnectWebSocket = () => {
       console.log('停止');
       if (socket.value.isConnected) {
@@ -98,7 +98,7 @@ const heartbeatTimer = ref(null)
 
     //获取探查状态
     const getStatus = ()=>{
-      
+
       getRelationshipAnalysisStatus().then(response => {
         console.log(response,'response');
         if (response.msg === '1') {
@@ -106,21 +106,21 @@ const heartbeatTimer = ref(null)
           handleQuery()
         } else if (response.msg === '0') {
           disabled.value = false
-          
+
         } else {
-          
+
         }
       });
-    } 
+    }
 
     //开始探查
     const analysisStart = ()=>{
-      
+
       relationshipAnalysisStart().then(response => {
         console.log(response,'response1');
         handleQuery()
       });
-    } 
+    }
 
     onMounted(() => {
       getStatus()
