@@ -52,6 +52,7 @@ export default {
     Database_name: "数据库名称",
     Database_type: "数据库类型",
     Database_URL: "数据库URL",
+    Database_mode: "模式",
     user_name: "用户名",
     password: "密码",
     operation: "操作",

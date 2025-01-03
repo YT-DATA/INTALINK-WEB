@@ -73,6 +73,13 @@
           <!--          <el-tooltip>{{ row.url }}</el-tooltip>-->
         </template>
       </el-table-column>
+      <el-table-column :label="$t('sourceManagement.Database_mode')" align="left" prop="schema" show-overflow-tooltip>
+        <template #default="{row}">
+          <el-input v-if="row.status" v-model="row.schema"></el-input>
+          <span v-else>{{ row.schema }}
+          </span>
+        </template>
+      </el-table-column>
       <el-table-column :label="$t('sourceManagement.user_name')" align="left" prop="userName">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.userName"></el-input>
@@ -205,6 +212,7 @@ function handleAdd() {
     dataSourceName: '',
     databaseType: '',
     url: '',
+    schema: '',
     userName: '',
     password: '',
     status: true,

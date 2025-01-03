@@ -189,6 +189,7 @@ export default {
     Database_name: "Database name",
     Database_type: "Database type",
     Database_URL: "Database url",
+    Database_mode: "Mode",
     user_name: "Username",
     password: "Password",
     operation: "Operation",
