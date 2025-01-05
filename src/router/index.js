@@ -163,6 +163,20 @@ export const constantRoutes = [
       },
     ]
   },
+  {
+    path: '/relationResults',
+    component: Layout,
+    hidden: true,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'gxMap',
+        component: () => import('@/views/relationResults/gxMap'),
+        name: 'gxMap',
+        meta: {title: '成果关系图', icon: 'documentation'}
+      },
+    ]
+  },
 ]
 
 

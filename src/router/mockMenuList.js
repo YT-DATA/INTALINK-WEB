@@ -166,7 +166,35 @@ const mockMenuList = [
         }
       },
     ]
-  }
+  },
+  {
+    "name": "RelationResults",
+    "path": "/relationResults",
+    "hidden": false,
+    "redirect": "noRedirect",
+    "component": "Layout",
+    "alwaysShow": true,
+    "meta": {
+      "title": "探查成果",
+      "icon": "shuju",
+      "noCache": false,
+      "link": null
+    },
+    "children": [
+      {
+        "name": "GxMap",
+        "path": "gxMap",
+        "hidden": false,
+        "component": "relationResults/gxMap",
+        "meta": {
+          "title": "成果关系图",
+          "icon": "tree",
+          "noCache": false,
+          "link": null
+        }
+      }
+    ]
+  },
 ]
 
 export default mockMenuList
