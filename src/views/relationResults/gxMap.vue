@@ -55,9 +55,9 @@
                     />
                   </el-select>
                 </el-form-item>
-                <el-form-item :label="$t('columnManagement.Data_Item_Name')" prop="dataColumnName">
+                <el-form-item :label="$t('columnManagement.Data_Item_Name')" prop="dataItemId">
                   <el-input
-                      v-model="queryParams.dataColumnName"
+                      v-model="queryParams.dataItemId"
                       :placeholder="$t('columnManagement.Data_Item_Name_Tip')"
                       clearable
                       style="width: 200px"
@@ -80,6 +80,7 @@ import {
   dataModelSelectAll,
   selectAllByModelId
 } from "@/api/configuration/configuration.js";
+import {graphlist, highlight} from "../../api/relationResults/relationResults.js";
 // 使用 ref 来声明 graphRef，初始值设为 null，用于后续获取组件实例引用
 const graphRef = ref(null);
 // 响应式数据声明
@@ -106,9 +107,9 @@ const graphOptions = ref({
   defaultJunctionPoint: 'border',
 });
 const queryParams = reactive({
-  dataColumnName: undefined,
   dataModelId: undefined,
   dataTableId: undefined,
+  dataItemId: "",
 });
 const optionsModel = ref([]) //模型下拉选
 const optionsTable = ref([]) //表下拉选
@@ -121,119 +122,92 @@ onBeforeUnmount(() => {
   console.log('beforeDestroy stop layout');
   graphRef.value.getInstance().stopAutoLayout();
 });
-
 // 展示图谱的方法
 const showGraph = () => {
-  const __graph_json_data = {
-    'nodes': [
-      {'id': 'a', 'text': 'a'},
-      {'id': 'b', 'text': 'b'},
-      {'id': 'b1', 'text': 'b1'},
-      {'id': 'b1-1', 'text': 'b1-1'},
-      {'id': 'b2', 'text': 'b2'},
-      {'id': 'b2-1', 'text': 'b2-1'},
-      {'id': 'b3', 'text': 'b3'},
-      {'id': 'b3-1', 'text': 'b3-1'},
-      {'id': 'b4', 'text': 'b4'},
-      {'id': 'b4-1', 'text': 'b4-1'},
-      {'id': 'b4-2', 'text': 'b4-2'},
-      {'id': 'b4-3', 'text': 'b4-3'},
-      {'id': 'b5', 'text': 'b5'},
-      {'id': 'b5-1', 'text': 'b5-1'},
-      {'id': 'b6', 'text': 'b6'},
-      {'id': 'b6-1', 'text': 'b6-1'},
-      {'id': 'e', 'text': 'e'},
-      {'id': 'e1', 'text': 'e1'},
-      {'id': 'e1-1', 'text': 'e1-1'},
-    ],
-    'lines': [
-      {'from': 'a', 'to': 'b'},
-      {'from': 'b', 'to': 'b1'},
-      {'from': 'b1', 'to': 'b1-1'},
-      {'from': 'b', 'to': 'b2'},
-      {'from': 'b', 'to': 'b3'},
-      {'from': 'b3', 'to': 'b3-1'},
-      {'from': 'b', 'to': 'b4'},
-      {'from': 'b4', 'to': 'b4-1'},
-      {'from': 'b4', 'to': 'b4-2'},
-      {'from': 'b4', 'to': 'b4-3'},
-      {'from': 'b', 'to': 'b5'},
-      {'from': 'b5', 'to': 'b5-1'},
-      {'from': 'b', 'to': 'b6'},
-      {'from': 'b6', 'to': 'b6-1'},
-      {'from': 'a', 'to': 'e'},
-      {'from': 'e', 'to': 'e1'},
-      {'from': 'e1', 'to': 'e1-1'},
-    ]
-  };
-  graphRef.value.setJsonData(__graph_json_data, (graphInstance) => {
-    // 这些写上当图谱初始化完成后需要执行的代码
+  let __graph_json_data = {rootId:''};
+  graphlist(queryParams).then(response => {
+    __graph_json_data = response
+    __graph_json_data.rootId = response.nodes?.[0]?.id || '';
+
+    graphRef.value.setJsonData(__graph_json_data, (graphInstance) => {
+      // 这些写上当图谱初始化完成后需要执行的代码
+      console.log(__graph_json_data)
+    });
   });
+
 
 };
 
 // 节点点击事件处理方法
 const onNodeClick = (nodeObject, $event) => {
   console.log('onNodeClick:', nodeObject);
-  const allChildIds = ['e', 'a', 'b', 'b1',  'e1'];
-  console.log(allChildIds, 'allChildIds');
-  const graphInstance = graphRef.value.getInstance();
-  if (graphInstance) {
-    const nodes = graphInstance.getNodes();
+  let dataTableId = nodeObject.id
+  let allChildIds = ['e', 'a', 'b', 'b1',  'e1'];
+  highlight({dataTableId}).then(response => {
+    allChildIds = response.nodes
+    console.log(allChildIds, 'allChildIds');
+    const graphInstance = graphRef.value.getInstance();
+    if (graphInstance) {
+      const nodes = graphInstance.getNodes();
+      for (const node of nodes) {
+        if (allChildIds.includes(node.id)) {
+          node.opacity = 1;
+          node.color = 'rgb(30 115 237)';
+        } else {
+          node.opacity = 0.1;
+          node.color = undefined;
+        }
+      }
+      const links = graphInstance.getLinks();
+      for (const link of links) {
+        if (allChildIds.includes(link.fromNode.id) && allChildIds.includes(link.toNode.id)) {
+          link.relations.forEach(line => {
+            line.color = 'rgb(30 115 237)';
+          });
+        } else {
+          link.relations.forEach(line => {
+            line.color = '';
+          });
+        }
+      }
+    }
+  });
 
-    for (const node of nodes) {
-      if (allChildIds.includes(node.id)) {
-        node.opacity = 1;
-        node.color = 'rgb(30 115 237)';
-      } else {
-        node.opacity = 0.1;
-        node.color = undefined;
-      }
-    }
-    const links = graphInstance.getLinks();
-    for (const link of links) {
-      if (allChildIds.includes(link.fromNode.id) && allChildIds.includes(link.toNode.id)) {
-        link.relations.forEach(line => {
-          line.color = 'rgb(30 115 237)';
-        });
-      } else {
-        link.relations.forEach(line => {
-          line.color = '';
-        });
-      }
-    }
-  }
 };
 //查询某个节点
 const handleQuery = async () => {
   console.log(queryParams);
-  const allChildIds = ['e', 'a', 'b', 'b1',  'e1'];
-  const graphInstance = graphRef.value.getInstance();
-  if (graphInstance) {
-    const searchResults = [];
-    const nodes = graphInstance.getNodes();
-    for (const node of nodes) {
-      if (allChildIds.includes(node.id)) {
-        node.opacity = 1;
-        node.color = 'rgb(30 115 237)';
-      } else {
-        node.opacity = 0.1;
-        node.color = undefined;
+  let allChildIds = ['e', 'a', 'b', 'b1',  'e1'];
+  highlight(queryParams).then(response => {
+    allChildIds = response.nodes
+    const graphInstance = graphRef.value.getInstance();
+    if (graphInstance) {
+      const searchResults = [];
+      const nodes = graphInstance.getNodes();
+      for (const node of nodes) {
+        if (allChildIds.includes(node.id)) {
+          node.opacity = 1;
+          node.color = 'rgb(30 115 237)';
+        } else {
+          node.opacity = 0.1;
+          node.color = undefined;
+        }
+      }
+      const links = graphInstance.getLinks();
+      for (const link of links) {
+        if (allChildIds.includes(link.fromNode.id) && allChildIds.includes(link.toNode.id)) {
+          link.relations.forEach(line => {
+            line.color = 'rgb(30 115 237)';
+          });
+        } else {
+          link.relations.forEach(line => {
+            line.color = '';
+          });
+        }
       }
     }
-    const links = graphInstance.getLinks();
-    for (const link of links) {
-      if (allChildIds.includes(link.fromNode.id) && allChildIds.includes(link.toNode.id)) {
-        link.relations.forEach(line => {
-          line.color = 'rgb(30 115 237)';
-        });
-      } else {
-        link.relations.forEach(line => {
-          line.color = '';
-        });
-      }
-    }
-  }
+  });
+
 };
 
 // 获取所有子节点ID的方法（原 deepGeAlltChildIds）
@@ -286,6 +260,7 @@ const handleModelValueChange = (newValue) => {
     queryParams.dataColumnName=undefined
     optionsTable.value=[]
     ModelIdSelectAll(newValue)
+    showGraph()
   }
 };
 /** 根据id查询数据表下拉列表 */
@@ -430,5 +405,9 @@ function ModelIdSelectAll(ModelId) {
   100% {
     stroke-dasharray: 100%, 0;
   }
+}
+
+.rel-node-peel {
+  boxShadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 </style>
