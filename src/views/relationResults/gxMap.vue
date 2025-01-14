@@ -96,7 +96,7 @@ const graphOptions = ref({
   defaultNodeColor: '#87CEFA',
   // defaultNodeColor: 'rgba(238, 178, 94, 1)',
   // 连线颜色配置，采用淡蓝色，与节点颜色相呼应，呈现科技感
-  defaultLineColor: '#7a99af',
+  // defaultLineColor: '#7a99af',
   layouts: [
     {
       label: '自动布局',
