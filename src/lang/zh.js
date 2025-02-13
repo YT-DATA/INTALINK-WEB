@@ -466,8 +466,8 @@ export default {
     caChe: "缓存",
     dont_cache: "不缓存",
     whether_cacheL: "是否缓存",
-    start_exploration:"开始探查"
-
+    start_exploration:"开始探查",
+    model_extraction:"模型提取"
   },
   PublicVariable: {
     select_tip: "请选择",

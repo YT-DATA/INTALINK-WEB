@@ -51,13 +51,13 @@
       <el-table-column :label="$t('modelManagement.Model_Name')" align="left" prop="dataModelName" show-overflow-tooltip>
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelName"></el-input>
-          <span v-else>{{ row.dataModelName }}</span>
+          <span style="cursor: pointer;text-decoration: underline;color: blue" @click="dataTableConfig(row)" v-else>{{ row.dataModelName }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('modelManagement.Model_coding')" align="left" prop="dataModelCode">
         <template #default="{row}">
           <el-input v-if="row.status" v-model="row.dataModelCode"></el-input>
-          <span v-else>{{ row.dataModelCode }}</span>
+          <span  v-else>{{ row.dataModelCode }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('modelManagement.Model_Description')" align="left" prop="dataModelRemark" show-overflow-tooltip>
@@ -79,7 +79,7 @@
           </el-button>
           <el-button v-else link type="primary" icon="Edit" @click="handleSaveUpdate(scope.row)">{{ $t('btn.save') }}</el-button>
 
-          <el-button link type="primary" icon="Edit" @click="dataTableConfig(scope.row)">{{ $t('btn.Table_configuration') }}</el-button>
+          <el-button link type="primary" icon="Edit" @click="modelExtraction(scope.row)">{{ $t('btn.model_extraction') }}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -170,6 +170,7 @@ import {
   dataModelList, insertDataModelList, deleteDataModel
 } from "@/api/configuration/configuration.js";
 import {ElMessage} from "element-plus";
+import {getDataModelById} from "../../api/configuration/configuration.js";
 
 const {proxy} = getCurrentInstance();
 const route = useRoute();
@@ -259,7 +260,7 @@ function handleQuery() {
 /** 查询列表 */
 function getList() {
   dataModelList(queryParams).then(response => {
-    dataList.value = response.rows;
+    dataList.value = response.rows?response.rows:[];
     total.value = response.total;
     loading.value = false;
     dataList.value.forEach(item => {
@@ -317,6 +318,45 @@ function dataTableConfig(row) {
     path: '/dataConfiguration/dataTable',
     query: {dataModelId}
   })
+}
+/** 模型提取 */
+function modelExtraction(row) {
+  console.log('111')
+  const dataModelId = row.dataModelId
+  let query = {
+    dataModelId:dataModelId,
+    delOldData:0
+  }
+  getDataModelById(query).then(response => {
+    console.log(response)
+    if(response.code==200){
+      proxy.$modal.msgSuccess("提取成功");
+      getList();
+    }else if(response.code==405){
+      proxy.$modal.confirm('当前模型下已有数据表，是否删除重新提取?').then(function () {
+        let querySec = {
+          dataModelId:dataModelId,
+          delOldData:1
+        }
+        getDataModelById(querySec).then(response => {
+          if(response.code==200){
+            proxy.$modal.msgSuccess("提取成功");
+            getList();
+          }else{
+            proxy.$modal.msgSuccess(response.msg);
+          }
+        });
+      }).then(() => {
+        getList();
+      }).catch(() => {
+      });
+    }else{
+      // proxy.$modal.msgSuccess(response.msg);
+      getList();
+    }
+  }).catch(error=>{
+    console.log(error)
+  });
 }
 
 /** 删除按钮操作 */

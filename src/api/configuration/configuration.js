@@ -197,4 +197,11 @@ export function dataTableCount() {
         method: 'get',
     })
 }
-
+// 查询数据表列表
+export function getDataModelById(query) {
+    return request({
+        url: '/dataSourceBasic/getDataModelById',
+        method: 'get',
+        params: query
+    })
+}

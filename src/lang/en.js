@@ -134,7 +134,8 @@ export default {
     cache: "Cache",
     dont_cache: "Don't cache",
     whether_cache: "Whether cache",
-    start_exploration:"Start Exploration"
+    start_exploration:"Start Exploration",
+    model_extraction:"Model extraction"
   },
   PublicVariable: {
     select_tip: "Please select",
