@@ -92,8 +92,8 @@ const graphOptions = ref({
   allowSwitchJunctionPoint: true,
   defaultLineShape: 1,
   backgroundColor: '#00001a', // 深蓝色，类似星空背景
-  // defaultLineColor: '#9999FF', // 淡紫色，与星空背景搭配协调
-  defaultNodeColor: '#87CEFA',
+  defaultLineColor: '#95aac7', // 淡紫色，与星空背景搭配协调
+  defaultNodeColor: '#75a7d8',
   // defaultNodeColor: 'rgba(238, 178, 94, 1)',
   // 连线颜色配置，采用淡蓝色，与节点颜色相呼应，呈现科技感
   // defaultLineColor: '#7a99af',
@@ -128,7 +128,47 @@ const showGraph = () => {
   graphlist(queryParams).then(response => {
     __graph_json_data = response
     __graph_json_data.rootId = response.nodes?.[0]?.id || '';
+    __graph_json_data.nodes.forEach(node => {
+      // 获取relationNum的值
+      const relationNum = node.relationNum || 0;
 
+      // 根据relationNum的值来设置node的宽度和高度
+      if (relationNum >= 0 && relationNum <= 10) {
+        node.width = 50;
+        node.height = 50;
+      } else if (relationNum >= 11 && relationNum <= 20) {
+        node.width = 70;
+        node.height = 70;
+      } else if (relationNum >= 21 && relationNum <= 30) {
+        node.width = 90;
+        node.height = 90;
+      } else if (relationNum >= 31 && relationNum <= 40) {
+        node.width = 100;
+        node.height = 100;
+      } else if (relationNum >= 41 && relationNum <= 50) {
+        node.width = 110;
+        node.height = 110;
+      } else if (relationNum >= 51 && relationNum <= 60) {
+        node.width = 120;
+        node.height = 120;
+      } else if (relationNum >= 61 && relationNum <= 70) {
+        node.width = 130;
+        node.height = 130;
+      } else if (relationNum >= 71 && relationNum <= 80) {
+        node.width = 140;
+        node.height = 140;
+      } else if (relationNum >= 81 && relationNum <= 90) {
+        node.width = 150;
+        node.height = 150;
+      } else if (relationNum >= 91 && relationNum <= 100) {
+        node.width = 160;
+        node.height = 160;
+      } else {
+        // 超过100，设置最大值
+        node.width = 170;
+        node.height = 170;
+      }
+    });
     graphRef.value.setJsonData(__graph_json_data, (graphInstance) => {
       // 这些写上当图谱初始化完成后需要执行的代码
       console.log(__graph_json_data)
@@ -314,6 +354,9 @@ function ModelIdSelectAll(ModelId) {
   background: linear-gradient(to right, #000000, #333333);
   //background: linear-gradient(to right, #00001a, #17174b);
   background: linear-gradient(to right, #3ca3e3, rgb(140, 95, 231));
+  background: linear-gradient(to right, #d0e7f9, #a2c4e4); /* 淡蓝到灰蓝渐变 */
+
+
 }
 
 ::v-deep .relation-graph {
